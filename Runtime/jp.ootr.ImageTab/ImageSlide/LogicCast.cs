@@ -9,7 +9,7 @@
                 var toggle = DeviceListButtonToggles[i];
                 if (toggle == null) continue;
                 if (!toggle.isOn) continue;
-                var device = Devices[i];
+                var device = devices[i];
                 if (device == null) continue;
                 device.LoadImage(source, fileName);
             }

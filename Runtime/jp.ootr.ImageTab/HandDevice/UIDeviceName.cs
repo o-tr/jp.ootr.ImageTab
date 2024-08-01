@@ -9,9 +9,9 @@ namespace jp.ootr.ImageTab.HandDevice
     {
         [SerializeField] protected InputField uIDeviceNameInputField;
 
-        public override void InitController(DeviceController controller, int deviceId, CommonDevice[] devices)
+        public override void InitController()
         {
-            base.InitController(controller, deviceId, devices);
+            base.InitController();
             uIDeviceNameInputField.text = deviceName;
         }
     }

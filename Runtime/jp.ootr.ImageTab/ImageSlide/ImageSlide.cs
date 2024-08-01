@@ -41,7 +41,7 @@ namespace jp.ootr.ImageTab.ImageSlide
                 return;
             }
 
-            Controller.UsAddUrl(url);
+            controller.UsAddUrl(url);
 
             AddUrl(url, isImageUrlEmpty ? URLType.TextZip : URLType.Image);
         }

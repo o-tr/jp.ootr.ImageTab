@@ -15,7 +15,7 @@ namespace jp.ootr.ImageTab.ImageSlide
 
         public virtual void AddUrl(VRCUrl url, URLType type, string urlStr = null)
         {
-            Controller.UsAddUrl(url);
+            controller.UsAddUrl(url);
             SyncAction = type.ToSyncAction();
             SyncSources = new[]
             {

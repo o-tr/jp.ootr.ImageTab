@@ -67,7 +67,7 @@ namespace jp.ootr.ImageTab.ImageSlide
                 UIUrlListAnimators[i].SetBool(AnimatorError, isError);
             }
 
-            uIUrlList.ToListChildren(true);
+            uIUrlList.ToListChildren(adjustHeight:true);
         }
 
         public override void OnFileLoadProgress(string source, float progress)

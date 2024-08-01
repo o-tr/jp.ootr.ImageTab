@@ -1,6 +1,4 @@
-﻿using jp.ootr.ImageDeviceController;
-using jp.ootr.ImageDeviceController.CommonDevice;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using VRC.Udon.Common.Enums;
 using static jp.ootr.common.UI;
@@ -17,20 +15,20 @@ namespace jp.ootr.ImageTab.HandDevice
 
         protected Toggle[] DeviceListButtonToggles = new Toggle[0];
 
-        public override void InitController(DeviceController controller, int deviceId, CommonDevice[] devices)
+        public override void InitController()
         {
-            base.InitController(controller, deviceId, devices);
+            base.InitController();
             SendCustomEventDelayedFrames(nameof(UpdateDeviceList), 1, EventTiming.LateUpdate);
         }
 
         public virtual void UpdateDeviceList()
         {
-            DeviceListButtonToggles = new Toggle[Devices.Length];
-            DeviceListButtonSliders = new Slider[Devices.Length];
-            for (var i = 0; i < Devices.Length; i++)
+            DeviceListButtonToggles = new Toggle[devices.Length];
+            DeviceListButtonSliders = new Slider[devices.Length];
+            for (var i = 0; i < devices.Length; i++)
             {
-                var device = Devices[i];
-                if (device == null || device.GetDeviceId() == DeviceId) continue;
+                var device = devices[i];
+                if (device == null || device.deviceUuid == deviceUuid) continue;
                 if (!device.IsCastableDevice()) continue;
                 CreateButton(i, device.GetName(), uIOriginalDeviceListButton, out var button, out var animator,
                     out var inputField, out var slider, out var toggle);
@@ -47,7 +45,7 @@ namespace jp.ootr.ImageTab.HandDevice
                 }
             }
 
-            uIDeviceListContainer.ToListChildren(true);
+            uIDeviceListContainer.ToListChildren(adjustHeight:true);
         }
     }
 }

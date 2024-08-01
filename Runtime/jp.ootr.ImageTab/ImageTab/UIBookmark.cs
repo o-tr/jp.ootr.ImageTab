@@ -18,9 +18,9 @@ namespace jp.ootr.ImageTab.ImageTab
         protected readonly int AnimatorHasBookmark = Animator.StringToHash("HasBookmark");
         protected Toggle[] UIBookmarkButtonToggles = new Toggle[0];
 
-        public override void InitController(DeviceController controller, int deviceId, CommonDevice[] devices)
+        public override void InitController()
         {
-            base.InitController(controller, deviceId, devices);
+            base.InitController();
             StoreBookmarkUrls();
             UpdateBookmark();
         }
@@ -28,7 +28,7 @@ namespace jp.ootr.ImageTab.ImageTab
         protected virtual void StoreBookmarkUrls()
         {
             if (uIBookmarkUrls.Length == 0) return;
-            foreach (var url in uIBookmarkUrls) Controller.UsAddUrlLocal(url);
+            foreach (var url in uIBookmarkUrls) controller.UsAddUrlLocal(url);
         }
 
         public virtual void UpdateBookmark()
@@ -54,7 +54,7 @@ namespace jp.ootr.ImageTab.ImageTab
                 UIBookmarkButtonToggles[i] = toggle;
             }
 
-            uIOriginalBookmarkButton.transform.parent.ToListChildren(true);
+            uIOriginalBookmarkButton.transform.parent.ToListChildren(adjustHeight:true);
 
             SendCustomEventDelayedFrames(nameof(UpdateFooter), 0, EventTiming.LateUpdate);
         }
@@ -64,7 +64,7 @@ namespace jp.ootr.ImageTab.ImageTab
             if (!UIBookmarkButtonToggles.HasChecked(out var index)) return;
             var url = uIBookmarkUrls[index];
             if (url == null) return;
-            Controller.UsAddUrl(url);
+            controller.UsAddUrl(url);
             var urlStr = url.ToString();
             LoadImage(urlStr, urlStr, true);
         }

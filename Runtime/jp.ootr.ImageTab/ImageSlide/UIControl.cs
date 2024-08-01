@@ -20,9 +20,9 @@ namespace jp.ootr.ImageTab.ImageSlide
         [SerializeField] protected RawImage uIPreviousImage;
         [SerializeField] protected AspectRatioFitter uIPreviousAspectRatioFitter;
 
-        public override void InitController(DeviceController controller, int deviceId, CommonDevice[] devices)
+        public override void InitController()
         {
-            base.InitController(controller, deviceId, devices);
+            base.InitController();
             UpdateControlLayout();
         }
 
@@ -52,7 +52,7 @@ namespace jp.ootr.ImageTab.ImageSlide
             }
             else
             {
-                var texture = Controller.CcGetTexture(Sources[CurrentIndex], FileNames[CurrentIndex]);
+                var texture = controller.CcGetTexture(Sources[CurrentIndex], FileNames[CurrentIndex]);
                 if (texture == null)
                 {
                     uICurrentImage.texture = uIBlankSprite;
@@ -70,7 +70,7 @@ namespace jp.ootr.ImageTab.ImageSlide
             }
             else
             {
-                var texture = Controller.CcGetTexture(Sources[CurrentIndex - 1], FileNames[CurrentIndex - 1]);
+                var texture = controller.CcGetTexture(Sources[CurrentIndex - 1], FileNames[CurrentIndex - 1]);
                 if (texture == null)
                 {
                     uIPreviousImage.texture = uIBlankSprite;
@@ -88,7 +88,7 @@ namespace jp.ootr.ImageTab.ImageSlide
             }
             else
             {
-                var texture = Controller.CcGetTexture(Sources[CurrentIndex + 1], FileNames[CurrentIndex + 1]);
+                var texture = controller.CcGetTexture(Sources[CurrentIndex + 1], FileNames[CurrentIndex + 1]);
                 if (texture == null)
                 {
                     uINextImage.texture = uIBlankSprite;
@@ -143,7 +143,7 @@ namespace jp.ootr.ImageTab.ImageSlide
                 var toggle = DeviceListButtonToggles[i];
                 if (toggle == null || !toggle.isOn) continue;
                 var deviceIndex = (int)DeviceListButtonSliders[i].value;
-                var device = Devices[deviceIndex];
+                var device = devices[deviceIndex];
                 var source = Sources[index];
                 var fileName = FileNames[index];
                 device.LoadImage(source, fileName);

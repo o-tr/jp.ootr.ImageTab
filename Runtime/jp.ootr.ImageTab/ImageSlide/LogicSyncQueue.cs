@@ -138,7 +138,7 @@ namespace jp.ootr.ImageTab.ImageSlide
 
             if (CurrentIndex > Sources.Length - 2 && CurrentIndex > 0) SeekToInternal(Sources.Length - 2);
             var source = Sources[index];
-            Controller.CcReleaseTexture(source, FileNames[index]);
+            controller.CcReleaseTexture(source, FileNames[index]);
             RemoveImage(index);
             if (HasFailedSource(source, out var failedIndex)) RemoveFailedSource(failedIndex);
             if (HasLoadingSource(source, out var loadingIndex)) RemoveLoadingSource(loadingIndex);
@@ -211,7 +211,7 @@ namespace jp.ootr.ImageTab.ImageSlide
                 }
 
                 if (isUsed) continue;
-                Controller.CcReleaseTexture(source, fileName);
+                controller.CcReleaseTexture(source, fileName);
                 RemoveImage(i);
             }
         }

@@ -1,4 +1,5 @@
-﻿using static jp.ootr.common.UI;
+﻿using jp.ootr.ImageDeviceController.CommonDevice;
+using static jp.ootr.common.UI;
 
 namespace jp.ootr.ImageTab.ImageTab
 {
@@ -8,35 +9,35 @@ namespace jp.ootr.ImageTab.ImageTab
         {
             if (!DeviceListButtonToggles.HasChecked(out var offset)) return;
             var index = (int)DeviceListButtonSliders[offset].value;
-            if (index < 0 || index >= Devices.Length) return;
-            var device = Devices[index];
+            if (index < 0 || index >= devices.Length) return;
+            var device = devices[index];
             if (device == null) return;
             if (!device.IsCastableDevice()) return;
-            CastImageToDevice(index);
+            CastImageToDevice(device);
         }
 
-        protected virtual void CastImageToDevice(int index)
+        protected virtual void CastImageToDevice(CommonDevice device)
         {
         }
 
         public virtual void CastImageToAllScreen()
         {
-            foreach (var device in Devices)
+            foreach (var device in devices)
             {
                 if (device == null) continue;
                 if (!device.IsCastableDevice()) return;
-                if (device.GetDeviceId() == DeviceId) continue;
-                CastImageToDevice(device.GetDeviceId());
+                if (device.GetDeviceUuid() == deviceUuid) continue;
+                CastImageToDevice(device);
             }
         }
 
         public virtual void ShowScreenNameOnScreen()
         {
-            foreach (var device in Devices)
+            foreach (var device in devices)
             {
                 if (device == null) continue;
                 if (!device.IsCastableDevice()) return;
-                if (device.GetDeviceId() == DeviceId) continue;
+                if (device.GetDeviceUuid() == deviceUuid) continue;
                 device.ShowScreenName();
             }
         }

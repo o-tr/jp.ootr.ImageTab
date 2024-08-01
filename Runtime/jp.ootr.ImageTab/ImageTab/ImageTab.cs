@@ -1,5 +1,6 @@
 ﻿using jp.ootr.common;
 using jp.ootr.ImageDeviceController;
+using jp.ootr.ImageDeviceController.CommonDevice;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,12 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public override string GetClassName()
         {
-            return "jp.ootr.ImageTab.scripts.ImageTab.ImageTab";
+            return "jp.ootr.ImageTab.ImageTab.ImageTab";
+        }
+        
+        public override string GetDisplayName()
+        {
+            return "ImageTab";
         }
 
         public void OnUrlEndEdit()
@@ -43,7 +49,7 @@ namespace jp.ootr.ImageTab.ImageTab
                 return;
             }
 
-            Controller.UsAddUrl(url);
+            controller.UsAddUrl(url);
 
             LoadImage(urlStr, urlStr, true);
         }
@@ -67,8 +73,8 @@ namespace jp.ootr.ImageTab.ImageTab
             }
 
             SetLoading(true);
-            Controller.CcReleaseTexture(LocalSource, LocalFileName);
-            Controller.UnloadFilesFromUrl((IControlledDevice)this, LocalSource);
+            controller.CcReleaseTexture(LocalSource, LocalFileName);
+            controller.UnloadFilesFromUrl((IControlledDevice)this, LocalSource);
             LocalSource = SyncSource;
             LocalFileName = SyncFileName;
             LLIFetchImage(LocalSource, SyncSource == SyncFileName ? URLType.Image : URLType.TextZip);
@@ -89,8 +95,8 @@ namespace jp.ootr.ImageTab.ImageTab
                 ShouldPushHistory = false;
             }
 
-            inputField.SetUrl(Controller.UsGetUrl(LocalSource));
-            var texture = Controller.CcGetTexture(LocalSource, LocalFileName);
+            inputField.SetUrl(controller.UsGetUrl(LocalSource));
+            var texture = controller.CcGetTexture(LocalSource, LocalFileName);
             if (!texture) return;
             image.texture = texture;
             aspectRatioFitter.aspectRatio = (float)texture.width / texture.height;
@@ -103,9 +109,8 @@ namespace jp.ootr.ImageTab.ImageTab
             animator.SetBool(AnimatorIsLoading, loading);
         }
 
-        protected override void CastImageToDevice(int index)
+        protected override void CastImageToDevice(CommonDevice device)
         {
-            var device = Devices[index];
             if (!device.IsCastableDevice()) return;
             device.LoadImage(LocalSource, LocalFileName);
         }
