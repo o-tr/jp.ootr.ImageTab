@@ -50,7 +50,7 @@ namespace jp.ootr.ImageTab.ImageTab
                 if (!UIHistoryButtonToggles[i].isOn) UIHistoryButtonToggles[i].isOn = false;
             }
 
-            uIOriginalHistoryButton.transform.parent.ToListChildren(reverse: true, adjustHeight: true);
+            uIOriginalHistoryButton.transform.parent.ToListChildrenVertical(reverse: true, adjustHeight: true);
         }
 
         public virtual void OnHistoryListClicked()

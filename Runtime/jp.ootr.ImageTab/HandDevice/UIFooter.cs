@@ -23,7 +23,7 @@ namespace jp.ootr.ImageTab.HandDevice
 
         public virtual void UpdateFooter()
         {
-            uIFooter.ToFillChildren(FillDirection.Horizontal, 0, 2);
+            uIFooter.ToFillChildrenHorizontal(0, 2);
         }
     }
 }

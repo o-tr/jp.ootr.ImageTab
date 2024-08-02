@@ -45,7 +45,7 @@ namespace jp.ootr.ImageTab.HandDevice
                 }
             }
 
-            uIDeviceListContainer.ToListChildren(adjustHeight:true);
+            uIDeviceListContainer.ToListChildrenVertical(adjustHeight:true);
         }
     }
 }

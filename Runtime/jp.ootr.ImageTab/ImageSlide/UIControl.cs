@@ -34,8 +34,8 @@ namespace jp.ootr.ImageTab.ImageSlide
 
         protected virtual void UpdateControlLayout()
         {
-            uIControlVertical.ToFillChildren(FillDirection.Vertical, 32, 32);
-            uIControlHorizontal.ToFillChildren(FillDirection.Horizontal, 32, 32);
+            uIControlVertical.ToFillChildrenVertical(32, 32);
+            uIControlHorizontal.ToFillChildrenHorizontal(32, 32);
         }
 
         public override void OnUrlsUpdated()
