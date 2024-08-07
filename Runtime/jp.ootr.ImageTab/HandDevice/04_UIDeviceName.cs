@@ -1,5 +1,3 @@
-using jp.ootr.ImageDeviceController;
-using jp.ootr.ImageDeviceController.CommonDevice;
 using UnityEngine;
 using UnityEngine.UI;
 

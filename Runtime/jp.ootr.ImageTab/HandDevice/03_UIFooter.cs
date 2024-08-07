@@ -1,6 +1,4 @@
 ﻿using jp.ootr.common;
-using jp.ootr.ImageDeviceController;
-using jp.ootr.ImageDeviceController.CommonDevice;
 using UnityEngine;
 
 namespace jp.ootr.ImageTab.HandDevice

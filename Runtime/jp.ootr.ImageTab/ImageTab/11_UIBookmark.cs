@@ -1,6 +1,4 @@
-﻿using jp.ootr.ImageDeviceController;
-using jp.ootr.ImageDeviceController.CommonDevice;
-using jp.ootr.ImageTab.HandDevice;
+﻿using jp.ootr.ImageTab.HandDevice;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
@@ -54,7 +52,7 @@ namespace jp.ootr.ImageTab.ImageTab
                 UIBookmarkButtonToggles[i] = toggle;
             }
 
-            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(adjustHeight:true);
+            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(adjustHeight: true);
 
             SendCustomEventDelayedFrames(nameof(UpdateFooter), 0, EventTiming.LateUpdate);
         }

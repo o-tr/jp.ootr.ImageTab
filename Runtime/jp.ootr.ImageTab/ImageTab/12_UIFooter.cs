@@ -1,6 +1,4 @@
-﻿using jp.ootr.ImageDeviceController;
-using jp.ootr.ImageDeviceController.CommonDevice;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace jp.ootr.ImageTab.ImageTab
 {

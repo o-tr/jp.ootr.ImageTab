@@ -31,7 +31,7 @@ namespace jp.ootr.ImageTab.ImageTab
         {
             return "jp.ootr.ImageTab.ImageTab.ImageTab";
         }
-        
+
         public override string GetDisplayName()
         {
             return "ImageTab";
