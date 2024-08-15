@@ -4596,6 +4596,8 @@ MonoBehaviour:
   animator: {fileID: 5630044862094040036}
   devices: []
   controller: {fileID: 0}
+  splashImage: {fileID: 0}
+  splashImageFitter: {fileID: 0}
   deviceUuid: e001ad39-a8a1-4172-b05b-493c1c1e1eb9
   ARWatchInterval: 0.2
   ARAnchorTop: {fileID: 6787314649853063368}

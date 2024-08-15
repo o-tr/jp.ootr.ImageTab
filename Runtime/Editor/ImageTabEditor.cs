@@ -1,5 +1,6 @@
 ﻿using System;
 using jp.ootr.common;
+using jp.ootr.ImageDeviceController.Editor;
 using UnityEditor;
 using UnityEngine;
 using VRC.SDKBase;
@@ -7,29 +8,31 @@ using VRC.SDKBase;
 namespace jp.ootr.ImageTab.Editor
 {
     [CustomEditor(typeof(ImageTab.ImageTab))]
-    public class ImageTabEditor : UnityEditor.Editor
+    public class ImageTabEditor : CommonDeviceEditor
     {
-        public override void OnInspectorGUI()
+        private SerializedProperty _arWatchInterval;
+        public override void OnEnable()
         {
-            var script = (ImageTab.ImageTab)target;
-
+            base.OnEnable();
+            _arWatchInterval = serializedObject.FindProperty("ARWatchInterval");
+        }
+        
+        protected override void ShowContent()
+        {
+            EditorGUILayout.Space();
+            var so = new SerializedObject(target);
+            EditorGUILayout.PropertyField(_arWatchInterval, new GUIContent("Rotation Check Interval"));
+            so.ApplyModifiedProperties();
+            EditorGUILayout.Space();
+            EditorGUI.BeginChangeCheck();
+            BuildBookmark((ImageTab.ImageTab) target);
+            if (!EditorGUI.EndChangeCheck()) return;
+            EditorUtility.SetDirty(target);
+        }
+        
+        protected override void ShowScriptName()
+        {
             EditorGUILayout.LabelField("ImageTab", EditorStyle.UiTitle);
-
-            EditorGUILayout.Space();
-
-            EditorGUILayout.LabelField("Device Name");
-            script.deviceName = EditorGUILayout.TextField(script.deviceName);
-
-            EditorGUILayout.Space();
-
-            EditorGUILayout.LabelField("Watch Interval");
-            script.ARWatchInterval = EditorGUILayout.Slider(script.ARWatchInterval, 0.01f, 1f);
-
-            EditorGUILayout.Space();
-
-            BuildBookmark(script);
-
-            EditorUtility.SetDirty(script);
         }
 
         private void BuildBookmark(ImageTab.ImageTab script)
