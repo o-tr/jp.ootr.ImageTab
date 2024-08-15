@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -1971,7 +1971,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -3007,7 +3007,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -3410,7 +3410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -3807,7 +3807,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -4129,7 +4129,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5688439922233641297}
   m_HandleRect: {fileID: 4859939205859242916}
   m_Direction: 2
-  m_Value: 1.0000153
+  m_Value: 1.0000336
   m_Size: 0.96666646
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4503,7 +4503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -4544,8 +4544,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390234051965789830}
-  - component: {fileID: 7916643675693929657}
-  - component: {fileID: 5132180297959643331}
+  - component: {fileID: 5488388682203411280}
+  - component: {fileID: 1061264739079975055}
   m_Layer: 13
   m_Name: ImageTab
   m_TagString: Untagged
@@ -4569,7 +4569,7 @@ Transform:
   - {fileID: 7326739115006485894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7916643675693929657
+--- !u!114 &5488388682203411280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4590,7 +4590,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _udonSharpBackingUdonBehaviour: {fileID: 5132180297959643331}
+  _udonSharpBackingUdonBehaviour: {fileID: 1061264739079975055}
   deviceName: ImageTab
   deviceIcon: {fileID: 2800000, guid: 88d6bbccb7302be4498888d1f2958abb, type: 3}
   animator: {fileID: 5630044862094040036}
@@ -4598,7 +4598,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   splashImage: {fileID: 0}
   splashImageFitter: {fileID: 0}
-  deviceUuid: e001ad39-a8a1-4172-b05b-493c1c1e1eb9
+  deviceUuid: dc8143a8-39ec-4a92-bc65-b57e543c6783
   arWatchInterval: 0.2
   arAnchorTop: {fileID: 6787314649853063368}
   arAnchorBottom: {fileID: 5291220489377781400}
@@ -4620,7 +4620,7 @@ MonoBehaviour:
   inputField: {fileID: 4839360843786961736}
   image: {fileID: 3937489300849477754}
   aspectRatioFitter: {fileID: 4655774779730696241}
---- !u!114 &5132180297959643331
+--- !u!114 &1061264739079975055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4640,8 +4640,8 @@ MonoBehaviour:
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0
   _syncMethod: 0
-  serializedProgramAsset: {fileID: 11400000, guid: ad8944cc5b483504abf43804b53553de, type: 2}
-  programSource: {fileID: 11400000, guid: 7a36e1791780e8241be4e9235f1c94d4, type: 2}
+  serializedProgramAsset: {fileID: 11400000, guid: 14ea3ce937b94cc47936ba6dd6f22405, type: 2}
+  programSource: {fileID: 11400000, guid: bc7986dfa9245594181d180dd319649d, type: 2}
   serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
   publicVariablesUnityEngineObjects: []
   publicVariablesSerializationDataFormat: 0
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5067,7 +5067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5219,7 +5219,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5354,7 +5354,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5486,7 +5486,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5208330879468002635}
   m_HandleRect: {fileID: 7534823909665766046}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5864,7 +5864,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -6772,7 +6772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -7535,7 +7535,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3736263555747832656}
   m_HandleRect: {fileID: 3152604355939220878}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7661,8 +7661,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4557239007154202004}
   m_HandleRect: {fileID: 369675214934136848}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.084045775
+  m_Value: 1.0000001
+  m_Size: 0.08404576
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7874,7 +7874,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -8565,7 +8565,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -9084,7 +9084,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2804569819335539520}
-  commonDevice: {fileID: 7916643675693929657}
+  commonDevice: {fileID: 5488388682203411280}
 --- !u!114 &2804569819335539520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9460,7 +9460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -9727,7 +9727,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -10404,7 +10404,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5132180297959643331}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -12141,7 +12141,7 @@ PrefabInstance:
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -12356,7 +12356,7 @@ PrefabInstance:
     - target: {fileID: 7884376970621823678, guid: 10aabc11f3059474e8fed3c49c65bab7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 7884376970621823678, guid: 10aabc11f3059474e8fed3c49c65bab7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -12546,7 +12546,7 @@ PrefabInstance:
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -13069,7 +13069,7 @@ PrefabInstance:
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -13375,7 +13375,7 @@ PrefabInstance:
     - target: {fileID: 5968471889577593799, guid: 4725a69d5693c4c4492e0f6d05cbe4fe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 5968471889577593799, guid: 4725a69d5693c4c4492e0f6d05cbe4fe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -13638,7 +13638,7 @@ PrefabInstance:
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5132180297959643331}
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 1524632285842616397, guid: 6989729f716e7794a9e69644b763f3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
