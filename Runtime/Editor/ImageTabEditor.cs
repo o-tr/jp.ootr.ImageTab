@@ -11,12 +11,13 @@ namespace jp.ootr.ImageTab.Editor
     public class ImageTabEditor : CommonDeviceEditor
     {
         private SerializedProperty _arWatchInterval;
+
         public override void OnEnable()
         {
             base.OnEnable();
             _arWatchInterval = serializedObject.FindProperty("ARWatchInterval");
         }
-        
+
         protected override void ShowContent()
         {
             EditorGUILayout.Space();
@@ -25,11 +26,11 @@ namespace jp.ootr.ImageTab.Editor
             so.ApplyModifiedProperties();
             EditorGUILayout.Space();
             EditorGUI.BeginChangeCheck();
-            BuildBookmark((ImageTab.ImageTab) target);
+            BuildBookmark((ImageTab.ImageTab)target);
             if (!EditorGUI.EndChangeCheck()) return;
             EditorUtility.SetDirty(target);
         }
-        
+
         protected override void ShowScriptName()
         {
             EditorGUILayout.LabelField("ImageTab", EditorStyle.UiTitle);
