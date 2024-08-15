@@ -1,13 +1,14 @@
 ﻿using jp.ootr.ImageDeviceController.CommonDevice;
 using UdonSharp;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VRC.Udon.Common.Enums;
 
 namespace jp.ootr.ImageTab
 {
     public class AutoRotateDevice : CommonDevice
     {
+        private const float UIAnimationDuration = 0.25f;
+
         [Header("同期間隔")] [SerializeField] [Range(0.01f, 1f)]
         public float arWatchInterval = 0.2f;
 
@@ -20,8 +21,6 @@ namespace jp.ootr.ImageTab
         [Header("アニメーション用定数")] private readonly int _animatorDirection = Animator.StringToHash("Direction");
 
         private readonly int _animatorLockRotation = Animator.StringToHash("LockRotation");
-
-        private const float UIAnimationDuration = 0.25f;
         [UdonSynced] private TabletDirection _arDirection = TabletDirection.Bottom;
         private bool _arIsHolding;
 
