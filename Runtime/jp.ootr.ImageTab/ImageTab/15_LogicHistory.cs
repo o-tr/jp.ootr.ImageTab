@@ -4,30 +4,30 @@ namespace jp.ootr.ImageTab.ImageTab
 {
     public class LogicHistory : UIDeviceList
     {
-        protected string[] HistoryFileNames = new string[0];
-        protected string[] HistoryUrls = new string[0];
+        private string[] _historyFileNames = new string[0];
+        private string[] _historyUrls = new string[0];
 
         protected virtual void PushHistory(string url, string fileName)
         {
-            HistoryUrls = HistoryUrls.Append(url);
-            HistoryFileNames = HistoryFileNames.Append(fileName);
-            UpdateHistoryUI(HistoryUrls, HistoryFileNames);
+            _historyUrls = _historyUrls.Append(url);
+            _historyFileNames = _historyFileNames.Append(fileName);
+            UpdateHistoryUI(_historyUrls, _historyFileNames);
         }
 
         protected override void OnRemoveHistory(int index)
         {
-            HistoryUrls = HistoryUrls.Remove(index);
-            HistoryFileNames = HistoryFileNames.Remove(index);
-            UpdateHistoryUI(HistoryUrls, HistoryFileNames);
+            _historyUrls = _historyUrls.Remove(index);
+            _historyFileNames = _historyFileNames.Remove(index);
+            UpdateHistoryUI(_historyUrls, _historyFileNames);
         }
 
         protected override string[] GetHistoryByIndex(int index)
         {
-            if (HistoryUrls.Length <= index) return new string[0];
+            if (_historyUrls.Length <= index) return new string[0];
             return new[]
             {
-                HistoryUrls[index],
-                HistoryFileNames[index]
+                _historyUrls[index],
+                _historyFileNames[index]
             };
         }
     }

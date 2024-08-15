@@ -12,20 +12,20 @@ namespace jp.ootr.ImageTab.ImageTab
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class ImageTab : UIError
     {
-        [SerializeField] protected VRCUrlInputField inputField;
+        [SerializeField] private VRCUrlInputField inputField;
 
-        [SerializeField] protected RawImage image;
-        [SerializeField] protected AspectRatioFitter aspectRatioFitter;
-        protected readonly int AnimatorIsLoading = Animator.StringToHash("IsLoading");
+        [SerializeField] private RawImage image;
+        [SerializeField] private AspectRatioFitter aspectRatioFitter;
+        private readonly int _animatorIsLoading = Animator.StringToHash("IsLoading");
 
-        protected bool IsLoading;
-        protected string LocalFileName = "";
+        private bool _isLoading;
+        private string _localFileName = "";
 
-        protected string LocalSource = "";
-        [UdonSynced] protected bool ShouldPushHistory = true;
-        [UdonSynced] protected string SyncFileName = "";
+        private string _localSource = "";
+        [UdonSynced] private bool _shouldPushHistory = true;
+        [UdonSynced] private string _syncFileName = "";
 
-        [UdonSynced] protected string SyncSource = "";
+        [UdonSynced] private string _syncSource = "";
 
         public override string GetClassName()
         {
@@ -42,7 +42,7 @@ namespace jp.ootr.ImageTab.ImageTab
             var url = inputField.GetUrl();
             var urlStr = url.ToString();
 
-            if (IsLoading || urlStr.IsNullOrEmpty() || SyncSource == url.ToString()) return;
+            if (_isLoading || urlStr.IsNullOrEmpty() || _syncSource == url.ToString()) return;
             if (!urlStr.IsValidUrl(out var error))
             {
                 OnFilesLoadFailed(error);
@@ -56,9 +56,9 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public override void LoadImage(string source, string fileName, bool shouldPushHistory = false)
         {
-            ShouldPushHistory = shouldPushHistory;
-            SyncSource = source;
-            SyncFileName = fileName;
+            _shouldPushHistory = shouldPushHistory;
+            _syncSource = source;
+            _syncFileName = fileName;
             SetLoading(true);
             Sync();
         }
@@ -66,18 +66,18 @@ namespace jp.ootr.ImageTab.ImageTab
         public override void _OnDeserialization()
         {
             base._OnDeserialization();
-            if ((LocalSource == SyncSource && LocalFileName == SyncFileName) || SyncSource.IsNullOrEmpty())
+            if ((_localSource == _syncSource && _localFileName == _syncFileName) || _syncSource.IsNullOrEmpty())
             {
                 SetLoading(false);
                 return;
             }
 
             SetLoading(true);
-            controller.CcReleaseTexture(LocalSource, LocalFileName);
-            controller.UnloadFilesFromUrl((IControlledDevice)this, LocalSource);
-            LocalSource = SyncSource;
-            LocalFileName = SyncFileName;
-            LLIFetchImage(LocalSource, SyncSource == SyncFileName ? URLType.Image : URLType.TextZip);
+            controller.CcReleaseTexture(_localSource, _localFileName);
+            controller.UnloadFilesFromUrl((IControlledDevice)this, _localSource);
+            _localSource = _syncSource;
+            _localFileName = _syncFileName;
+            LLIFetchImage(_localSource, _syncSource == _syncFileName ? URLType.Image : URLType.TextZip);
         }
 
         public void ClearUrl()
@@ -87,16 +87,16 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public override void OnFilesLoadSuccess(string source, string[] fileNames)
         {
-            if (source != LocalSource) return;
+            if (source != _localSource) return;
             base.OnFilesLoadSuccess(source, fileNames);
-            if (ShouldPushHistory)
+            if (_shouldPushHistory)
             {
-                PushHistory(LocalSource, LocalFileName);
-                ShouldPushHistory = false;
+                PushHistory(_localSource, _localFileName);
+                _shouldPushHistory = false;
             }
 
-            inputField.SetUrl(controller.UsGetUrl(LocalSource));
-            var texture = controller.CcGetTexture(LocalSource, LocalFileName);
+            inputField.SetUrl(controller.UsGetUrl(_localSource));
+            var texture = controller.CcGetTexture(_localSource, _localFileName);
             if (!texture) return;
             image.texture = texture;
             aspectRatioFitter.aspectRatio = (float)texture.width / texture.height;
@@ -105,14 +105,14 @@ namespace jp.ootr.ImageTab.ImageTab
 
         protected virtual void SetLoading(bool loading)
         {
-            IsLoading = loading;
-            animator.SetBool(AnimatorIsLoading, loading);
+            _isLoading = loading;
+            animator.SetBool(_animatorIsLoading, loading);
         }
 
         protected override void CastImageToDevice(CommonDevice device)
         {
             if (!device.IsCastableDevice()) return;
-            device.LoadImage(LocalSource, LocalFileName);
+            device.LoadImage(_localSource, _localFileName);
         }
 
         public override void OnFilesLoadFailed(LoadError error)

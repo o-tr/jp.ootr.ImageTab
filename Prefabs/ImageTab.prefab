@@ -4599,11 +4599,11 @@ MonoBehaviour:
   splashImage: {fileID: 0}
   splashImageFitter: {fileID: 0}
   deviceUuid: e001ad39-a8a1-4172-b05b-493c1c1e1eb9
-  ARWatchInterval: 0.2
-  ARAnchorTop: {fileID: 6787314649853063368}
-  ARAnchorBottom: {fileID: 5291220489377781400}
-  ARAnchorLeft: {fileID: 7299487262437581722}
-  ARAnchorRight: {fileID: 1589418509514561182}
+  arWatchInterval: 0.2
+  arAnchorTop: {fileID: 6787314649853063368}
+  arAnchorBottom: {fileID: 5291220489377781400}
+  arAnchorLeft: {fileID: 7299487262437581722}
+  arAnchorRight: {fileID: 1589418509514561182}
   uIDeviceListContainer: {fileID: 4230316827428591493}
   uIOriginalDeviceListButton: {fileID: 1948509852937077432}
   uIDeviceScreenIcon: {fileID: 21300000, guid: 707b98747784efa44a8f9fedb95fa21d, type: 3}

@@ -4,74 +4,74 @@ namespace jp.ootr.ImageTab.ImageTab
 {
     public class UIAnimatorHandler : LogicHistory
     {
-        protected readonly int AnimatorCastModalState = Animator.StringToHash("CastModalState");
-        protected readonly int AnimatorErrorModalState = Animator.StringToHash("ErrorModalState");
-        protected readonly int AnimatorLibraryModalState = Animator.StringToHash("LibraryModalState");
-        protected readonly int AnimatorSettingsModalState = Animator.StringToHash("SettingsModalState");
+        private readonly int _animatorCastModalState = Animator.StringToHash("CastModalState");
+        private readonly int _animatorErrorModalState = Animator.StringToHash("ErrorModalState");
+        private readonly int _animatorLibraryModalState = Animator.StringToHash("LibraryModalState");
+        private readonly int _animatorSettingsModalState = Animator.StringToHash("SettingsModalState");
 
         public virtual void CloseCastModal()
         {
-            animator.SetInteger(AnimatorCastModalState, 0);
+            animator.SetInteger(_animatorCastModalState, 0);
         }
 
         public virtual void OpenCastModal()
         {
-            animator.SetInteger(AnimatorCastModalState, 1);
+            animator.SetInteger(_animatorCastModalState, 1);
         }
 
         public virtual void CloseLibraryModal()
         {
-            animator.SetInteger(AnimatorLibraryModalState, 0);
+            animator.SetInteger(_animatorLibraryModalState, 0);
         }
 
         public virtual void OpenLibraryModal()
         {
-            animator.SetInteger(AnimatorLibraryModalState, 1);
+            animator.SetInteger(_animatorLibraryModalState, 1);
         }
 
         public virtual void OpenLibraryModalHistoryPage()
         {
-            animator.SetInteger(AnimatorLibraryModalState, 2);
+            animator.SetInteger(_animatorLibraryModalState, 2);
         }
 
         public virtual void OpenLibraryModalBookmarkPage()
         {
-            animator.SetInteger(AnimatorLibraryModalState, 3);
+            animator.SetInteger(_animatorLibraryModalState, 3);
         }
 
         public virtual void OpenHistoryModal()
         {
-            animator.SetInteger(AnimatorLibraryModalState, 4);
+            animator.SetInteger(_animatorLibraryModalState, 4);
         }
 
         public virtual void CloseSettingsModal()
         {
-            animator.SetInteger(AnimatorSettingsModalState, 0);
+            animator.SetInteger(_animatorSettingsModalState, 0);
         }
 
         public virtual void OpenSettingsModal()
         {
-            animator.SetInteger(AnimatorSettingsModalState, 1);
+            animator.SetInteger(_animatorSettingsModalState, 1);
         }
 
         public virtual void OpenSettingsModalAboutPage()
         {
-            animator.SetInteger(AnimatorSettingsModalState, 2);
+            animator.SetInteger(_animatorSettingsModalState, 2);
         }
 
         public virtual void OpenSettingsModalLicensePage()
         {
-            animator.SetInteger(AnimatorSettingsModalState, 3);
+            animator.SetInteger(_animatorSettingsModalState, 3);
         }
 
         public virtual void CloseErrorModal()
         {
-            animator.SetInteger(AnimatorErrorModalState, 0);
+            animator.SetInteger(_animatorErrorModalState, 0);
         }
 
         public virtual void OpenErrorModal()
         {
-            animator.SetInteger(AnimatorErrorModalState, 1);
+            animator.SetInteger(_animatorErrorModalState, 1);
         }
     }
 }

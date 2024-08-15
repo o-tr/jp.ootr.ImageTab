@@ -1,6 +1,7 @@
 ﻿using jp.ootr.ImageDeviceController.CommonDevice;
 using UdonSharp;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VRC.Udon.Common.Enums;
 
 namespace jp.ootr.ImageTab.HandDevice
@@ -8,85 +9,85 @@ namespace jp.ootr.ImageTab.HandDevice
     public class AutoRotateDevice : CommonDevice
     {
         [Header("同期間隔")] [SerializeField] [Range(0.01f, 1f)]
-        public float ARWatchInterval = 0.2f;
+        public float arWatchInterval = 0.2f;
 
-        [Header("回転検知用")] [SerializeField] protected Transform ARAnchorTop;
+        [Header("回転検知用")] [SerializeField] private Transform arAnchorTop;
 
-        [SerializeField] protected Transform ARAnchorBottom;
-        [SerializeField] protected Transform ARAnchorLeft;
-        [SerializeField] protected Transform ARAnchorRight;
+        [SerializeField] private Transform arAnchorBottom;
+        [SerializeField] private Transform arAnchorLeft;
+        [SerializeField] private Transform arAnchorRight;
 
-        [Header("アニメーション用定数")] protected readonly int AnimatorDirection = Animator.StringToHash("Direction");
+        [Header("アニメーション用定数")] private readonly int _animatorDirection = Animator.StringToHash("Direction");
 
-        protected readonly int AnimatorLockRotation = Animator.StringToHash("LockRotation");
+        private readonly int _animatorLockRotation = Animator.StringToHash("LockRotation");
 
-        protected readonly float UIAnimationDuration = 0.25f;
-        [UdonSynced] protected TabletDirection ARDirection = TabletDirection.Bottom;
-        protected bool ARIsHolding;
+        private const float UIAnimationDuration = 0.25f;
+        [UdonSynced] private TabletDirection _arDirection = TabletDirection.Bottom;
+        private bool _arIsHolding;
 
-        [Header("同期用")] [UdonSynced] protected bool ARIsLockRotate;
+        [Header("同期用")] [UdonSynced] private bool _arIsLockRotate;
 
-        protected bool ARIsLockRotateLocal;
-        protected TabletDirection ARLocalDirection = 0;
+        private bool _arIsLockRotateLocal;
+        private TabletDirection _arLocalDirection = 0;
 
         public override void OnPickup()
         {
-            ARIsHolding = true;
-            SendCustomEventDelayedSeconds(nameof(WatchObjectTransform), ARWatchInterval);
+            _arIsHolding = true;
+            SendCustomEventDelayedSeconds(nameof(WatchObjectTransform), arWatchInterval);
         }
 
         public override void OnDrop()
         {
-            ARIsHolding = false;
+            _arIsHolding = false;
         }
 
         public virtual void WatchObjectTransform()
         {
-            if (!ARIsHolding) return;
-            SendCustomEventDelayedSeconds(nameof(WatchObjectTransform), ARWatchInterval);
+            if (!_arIsHolding) return;
+            SendCustomEventDelayedSeconds(nameof(WatchObjectTransform), arWatchInterval);
             UpdateTabletDirection();
         }
 
         protected virtual void UpdateTabletDirection()
         {
-            if (ARIsLockRotate) return;
+            if (_arIsLockRotate) return;
 
-            var top = ARAnchorTop.transform.position.y;
-            var bottom = ARAnchorBottom.transform.position.y;
-            var left = ARAnchorLeft.transform.position.y;
-            var right = ARAnchorRight.transform.position.y;
+            var top = arAnchorTop.transform.position.y;
+            var bottom = arAnchorBottom.transform.position.y;
+            var left = arAnchorLeft.transform.position.y;
+            var right = arAnchorRight.transform.position.y;
 
             var min = Mathf.Min(top, bottom, left, right);
             var max = Mathf.Max(top, bottom, left, right);
 
             if (max - min < 0.05f) return;
             if (top < bottom && top < left && top < right)
-                ARDirection = TabletDirection.Top;
+                _arDirection = TabletDirection.Top;
             else if (bottom < top && bottom < left && bottom < right)
-                ARDirection = TabletDirection.Bottom;
+                _arDirection = TabletDirection.Bottom;
             else if (left < top && left < bottom && left < right)
-                ARDirection = TabletDirection.Left;
-            else if (right < top && right < bottom && right < left) ARDirection = TabletDirection.Right;
-            if (ARLocalDirection == ARDirection) return;
+                _arDirection = TabletDirection.Left;
+            else if (right < top && right < bottom && right < left) _arDirection = TabletDirection.Right;
+            if (_arLocalDirection == _arDirection) return;
             Sync();
         }
 
         protected virtual void ApplyDirectionToAnimator()
         {
-            if (ARLocalDirection == ARDirection) return;
-            ConsoleDebug($"[ApplyDirectionToAnimator] current: {ARLocalDirection}, new: {ARDirection}");
-            ARLocalDirection = ARDirection;
-            animator.SetInteger(AnimatorDirection, (int)ARDirection);
+            if (_arLocalDirection == _arDirection) return;
+            ConsoleDebug($"[ApplyDirectionToAnimator] current: {_arLocalDirection}, new: {_arDirection}");
+            _arLocalDirection = _arDirection;
+            animator.SetInteger(_animatorDirection, (int)_arDirection);
             SendCustomEventDelayedSeconds(nameof(OnDirectionChanged), UIAnimationDuration, EventTiming.LateUpdate);
         }
 
         protected virtual void ApplyRotateLock()
         {
-            if (ARIsLockRotateLocal != ARIsLockRotate)
+            if (_arIsLockRotateLocal != _arIsLockRotate)
             {
-                ARIsLockRotateLocal = ARIsLockRotate;
-                animator.SetBool(AnimatorLockRotation, ARIsLockRotate);
-                if (!ARIsLockRotate) UpdateTabletDirection();
+                _arIsLockRotateLocal = _arIsLockRotate;
+                animator.SetBool(_animatorLockRotation, _arIsLockRotate);
+                if (!_arIsLockRotate) UpdateTabletDirection();
             }
         }
 
@@ -99,7 +100,7 @@ namespace jp.ootr.ImageTab.HandDevice
 
         public void ToggleAutoRotate()
         {
-            ARIsLockRotate = !ARIsLockRotate;
+            _arIsLockRotate = !_arIsLockRotate;
             Sync();
         }
 

@@ -15,7 +15,7 @@ namespace jp.ootr.ImageTab.Editor
         public override void OnEnable()
         {
             base.OnEnable();
-            _arWatchInterval = serializedObject.FindProperty("ARWatchInterval");
+            _arWatchInterval = serializedObject.FindProperty("arWatchInterval");
         }
 
         protected override void ShowContent()

@@ -6,8 +6,8 @@ namespace jp.ootr.ImageTab.ImageTab
 {
     public class UIError : UIAnimatorHandler
     {
-        [SerializeField] protected InputField uIErrorTitle;
-        [SerializeField] protected InputField uIErrorMessage;
+        [SerializeField] private InputField uIErrorTitle;
+        [SerializeField] private InputField uIErrorMessage;
 
         public override void OnFilesLoadFailed(LoadError error)
         {

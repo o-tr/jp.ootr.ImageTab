@@ -7,10 +7,10 @@ namespace jp.ootr.ImageTab.ImageTab
 {
     public class UIHistory : UIFooter
     {
-        [SerializeField] protected GameObject uIOriginalHistoryButton;
-        protected InputField[] UIHistoryButtonInputFields = new InputField[0];
-        protected GameObject[] UIHistoryButtons = new GameObject[0];
-        protected Toggle[] UIHistoryButtonToggles = new Toggle[0];
+        [SerializeField] private GameObject uIOriginalHistoryButton;
+        private InputField[] _uiHistoryButtonInputFields = new InputField[0];
+        private GameObject[] _uiHistoryButtons = new GameObject[0];
+        private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
 
         public virtual void UpdateHistoryUI(string[] urls, string[] filenames)
         {
@@ -20,34 +20,34 @@ namespace jp.ootr.ImageTab.ImageTab
                 return;
             }
 
-            if (UIHistoryButtons.Length < urls.Length)
+            if (_uiHistoryButtons.Length < urls.Length)
             {
-                var originalLength = UIHistoryButtons.Length;
-                UIHistoryButtons = UIHistoryButtons.Resize(urls.Length);
-                UIHistoryButtonToggles = UIHistoryButtonToggles.Resize(urls.Length);
-                UIHistoryButtonInputFields = UIHistoryButtonInputFields.Resize(urls.Length);
+                var originalLength = _uiHistoryButtons.Length;
+                _uiHistoryButtons = _uiHistoryButtons.Resize(urls.Length);
+                _uiHistoryButtonToggles = _uiHistoryButtonToggles.Resize(urls.Length);
+                _uiHistoryButtonInputFields = _uiHistoryButtonInputFields.Resize(urls.Length);
                 for (var i = originalLength; i < urls.Length; i++)
                 {
                     CreateButton(i, filenames[i], uIOriginalHistoryButton, out var button, out var void2,
                         out var inputField, out var void4, out var toggle);
-                    UIHistoryButtons[i] = button;
-                    UIHistoryButtonToggles[i] = toggle;
-                    UIHistoryButtonInputFields[i] = inputField;
+                    _uiHistoryButtons[i] = button;
+                    _uiHistoryButtonToggles[i] = toggle;
+                    _uiHistoryButtonInputFields[i] = inputField;
                 }
             }
-            else if (UIHistoryButtons.Length > urls.Length)
+            else if (_uiHistoryButtons.Length > urls.Length)
             {
-                for (var i = urls.Length; i < UIHistoryButtons.Length; i++) Destroy(UIHistoryButtons[i]);
-                UIHistoryButtons = UIHistoryButtons.Resize(urls.Length);
-                UIHistoryButtonToggles = UIHistoryButtonToggles.Resize(urls.Length);
-                UIHistoryButtonInputFields = UIHistoryButtonInputFields.Resize(urls.Length);
+                for (var i = urls.Length; i < _uiHistoryButtons.Length; i++) Destroy(_uiHistoryButtons[i]);
+                _uiHistoryButtons = _uiHistoryButtons.Resize(urls.Length);
+                _uiHistoryButtonToggles = _uiHistoryButtonToggles.Resize(urls.Length);
+                _uiHistoryButtonInputFields = _uiHistoryButtonInputFields.Resize(urls.Length);
             }
 
-            for (var i = 0; i < UIHistoryButtons.Length; i++)
+            for (var i = 0; i < _uiHistoryButtons.Length; i++)
             {
-                if (UIHistoryButtonInputFields[i].text != filenames[i])
-                    UIHistoryButtonInputFields[i].text = filenames[i];
-                if (!UIHistoryButtonToggles[i].isOn) UIHistoryButtonToggles[i].isOn = false;
+                if (_uiHistoryButtonInputFields[i].text != filenames[i])
+                    _uiHistoryButtonInputFields[i].text = filenames[i];
+                if (!_uiHistoryButtonToggles[i].isOn) _uiHistoryButtonToggles[i].isOn = false;
             }
 
             uIOriginalHistoryButton.transform.parent.ToListChildrenVertical(reverse: true, adjustHeight: true);
@@ -55,7 +55,7 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public virtual void OnHistoryListClicked()
         {
-            if (!UIHistoryButtonToggles.HasChecked(out var index)) return;
+            if (!_uiHistoryButtonToggles.HasChecked(out var index)) return;
             var source = GetHistoryByIndex(index);
             if (source.Length == 0) return;
             LoadImage(source[0], source[1]);
@@ -63,7 +63,7 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public virtual void RemoveHistory()
         {
-            if (!UIHistoryButtonToggles.HasChecked(out var index)) return;
+            if (!_uiHistoryButtonToggles.HasChecked(out var index)) return;
             OnRemoveHistory(index);
         }
 

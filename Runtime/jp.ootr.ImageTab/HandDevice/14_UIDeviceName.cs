@@ -5,7 +5,7 @@ namespace jp.ootr.ImageTab.HandDevice
 {
     public class UIDeviceName : UIFooter
     {
-        [SerializeField] protected InputField uIDeviceNameInputField;
+        [SerializeField] private InputField uIDeviceNameInputField;
 
         public override void InitController()
         {

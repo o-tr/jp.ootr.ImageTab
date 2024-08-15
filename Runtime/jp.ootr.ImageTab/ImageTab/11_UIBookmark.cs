@@ -11,10 +11,10 @@ namespace jp.ootr.ImageTab.ImageTab
     {
         [SerializeField] public VRCUrl[] uIBookmarkUrls = new VRCUrl[0];
         [SerializeField] public string[] uIBookmarkNames = new string[0];
-        [SerializeField] protected GameObject uIOriginalBookmarkButton;
+        [SerializeField] private GameObject uIOriginalBookmarkButton;
 
-        protected readonly int AnimatorHasBookmark = Animator.StringToHash("HasBookmark");
-        protected Toggle[] UIBookmarkButtonToggles = new Toggle[0];
+        private readonly int _animatorHasBookmark = Animator.StringToHash("HasBookmark");
+        private Toggle[] _uiBookmarkButtonToggles = new Toggle[0];
 
         public override void InitController()
         {
@@ -29,7 +29,7 @@ namespace jp.ootr.ImageTab.ImageTab
             foreach (var url in uIBookmarkUrls) controller.UsAddUrlLocal(url);
         }
 
-        public virtual void UpdateBookmark()
+        protected virtual void UpdateBookmark()
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)
             {
@@ -38,10 +38,10 @@ namespace jp.ootr.ImageTab.ImageTab
             }
 
             var isBookmarkEmpty = uIBookmarkUrls.Length == 0;
-            animator.SetBool(AnimatorHasBookmark, !isBookmarkEmpty);
+            animator.SetBool(_animatorHasBookmark, !isBookmarkEmpty);
             if (isBookmarkEmpty) return;
 
-            UIBookmarkButtonToggles = new Toggle[uIBookmarkUrls.Length];
+            _uiBookmarkButtonToggles = new Toggle[uIBookmarkUrls.Length];
             for (var i = 0; i < uIBookmarkUrls.Length; i++)
             {
                 var itemUrl = uIBookmarkUrls[i];
@@ -49,7 +49,7 @@ namespace jp.ootr.ImageTab.ImageTab
                 if (itemUrl == null || itemName == null) continue;
                 CreateButton(i, itemName, uIOriginalBookmarkButton, out var void1, out var void2, out var void3,
                     out var void4, out var toggle);
-                UIBookmarkButtonToggles[i] = toggle;
+                _uiBookmarkButtonToggles[i] = toggle;
             }
 
             uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(adjustHeight: true);
@@ -59,7 +59,7 @@ namespace jp.ootr.ImageTab.ImageTab
 
         public void OnBookmarkListClicked()
         {
-            if (!UIBookmarkButtonToggles.HasChecked(out var index)) return;
+            if (!_uiBookmarkButtonToggles.HasChecked(out var index)) return;
             var url = uIBookmarkUrls[index];
             if (url == null) return;
             controller.UsAddUrl(url);

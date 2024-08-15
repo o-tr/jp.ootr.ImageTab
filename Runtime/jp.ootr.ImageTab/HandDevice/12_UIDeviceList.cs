@@ -7,10 +7,10 @@ namespace jp.ootr.ImageTab.HandDevice
 {
     public class UIDeviceList : AutoRotateDevice
     {
-        [SerializeField] protected RectTransform uIDeviceListContainer;
-        [SerializeField] protected GameObject uIOriginalDeviceListButton;
-        [SerializeField] protected Sprite uIDeviceScreenIcon;
-        [SerializeField] protected Sprite uIDeviceTabletIcon;
+        [SerializeField] private RectTransform uIDeviceListContainer;
+        [SerializeField] private GameObject uIOriginalDeviceListButton;
+        [SerializeField] private Sprite uIDeviceScreenIcon;
+        [SerializeField] private Sprite uIDeviceTabletIcon;
         protected Slider[] DeviceListButtonSliders = new Slider[0];
 
         protected Toggle[] DeviceListButtonToggles = new Toggle[0];

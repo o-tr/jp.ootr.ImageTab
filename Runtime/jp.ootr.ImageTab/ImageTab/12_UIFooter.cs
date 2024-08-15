@@ -4,7 +4,7 @@ namespace jp.ootr.ImageTab.ImageTab
 {
     public class UIFooter : UIBookmark
     {
-        [SerializeField] protected GameObject uICastModalButton;
+        [SerializeField] private GameObject uICastModalButton;
 
         public override void InitController()
         {
