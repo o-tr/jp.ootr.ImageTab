@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using VRC.Udon.Common.Enums;
 using static jp.ootr.common.UI;
 
-namespace jp.ootr.ImageTab.HandDevice
+namespace jp.ootr.ImageTab
 {
-    public class UIDeviceList : AutoRotateDevice
+    public class LogicDeviceList : AutoRotateDevice
     {
         [SerializeField] private RectTransform uIDeviceListContainer;
         [SerializeField] private GameObject uIOriginalDeviceListButton;

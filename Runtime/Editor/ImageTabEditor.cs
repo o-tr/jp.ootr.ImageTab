@@ -7,7 +7,7 @@ using VRC.SDKBase;
 
 namespace jp.ootr.ImageTab.Editor
 {
-    [CustomEditor(typeof(ImageTab.ImageTab))]
+    [CustomEditor(typeof(ImageTab))]
     public class ImageTabEditor : CommonDeviceEditor
     {
         private SerializedProperty _arWatchInterval;
@@ -26,7 +26,7 @@ namespace jp.ootr.ImageTab.Editor
             so.ApplyModifiedProperties();
             EditorGUILayout.Space();
             EditorGUI.BeginChangeCheck();
-            BuildBookmark((ImageTab.ImageTab)target);
+            BuildBookmark((ImageTab)target);
             if (!EditorGUI.EndChangeCheck()) return;
             EditorUtility.SetDirty(target);
         }
@@ -36,7 +36,7 @@ namespace jp.ootr.ImageTab.Editor
             EditorGUILayout.LabelField("ImageTab", EditorStyle.UiTitle);
         }
 
-        private void BuildBookmark(ImageTab.ImageTab script)
+        private void BuildBookmark(ImageTab script)
         {
             var newSize = Mathf.Max(script.uIBookmarkNames.Length, script.uIBookmarkUrls.Length);
             if (script.uIBookmarkNames.Length != newSize || script.uIBookmarkUrls.Length != newSize)

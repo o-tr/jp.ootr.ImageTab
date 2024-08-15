@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace jp.ootr.ImageTab.HandDevice
+namespace jp.ootr.ImageTab
 {
     public class UIDeviceName : UIFooter
     {

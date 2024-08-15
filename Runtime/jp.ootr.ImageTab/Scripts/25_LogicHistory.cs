@@ -1,6 +1,6 @@
 using static jp.ootr.common.ArrayUtils;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     public class LogicHistory : UIDeviceList
     {

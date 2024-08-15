@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     public class UIError : UIAnimatorHandler
     {

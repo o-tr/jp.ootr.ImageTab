@@ -1,7 +1,7 @@
 ﻿using jp.ootr.ImageDeviceController.CommonDevice;
 using static jp.ootr.common.UI;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     public class UIDeviceList : UIHistory
     {

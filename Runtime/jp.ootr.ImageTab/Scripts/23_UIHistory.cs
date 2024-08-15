@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using static jp.ootr.common.UI;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
-    public class UIHistory : UIFooter
+    public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using VRC.SDK3.Components;
 using VRC.SDKBase;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class ImageTab : UIError

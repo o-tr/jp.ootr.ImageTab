@@ -1,11 +1,10 @@
-﻿using jp.ootr.ImageTab.HandDevice;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon.Common.Enums;
 using static jp.ootr.common.UI;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     public class UIBookmark : UIDeviceName
     {

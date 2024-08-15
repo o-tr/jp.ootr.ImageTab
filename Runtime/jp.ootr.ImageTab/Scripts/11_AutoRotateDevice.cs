@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using VRC.Udon.Common.Enums;
 
-namespace jp.ootr.ImageTab.HandDevice
+namespace jp.ootr.ImageTab
 {
     public class AutoRotateDevice : CommonDevice
     {

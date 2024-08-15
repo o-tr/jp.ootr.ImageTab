@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace jp.ootr.ImageTab.ImageTab
+namespace jp.ootr.ImageTab
 {
     public class UIAnimatorHandler : LogicHistory
     {
