@@ -82,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 728829452697184143, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.99999803
       objectReference: {fileID: 0}
     - target: {fileID: 728829452697184143, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1156466205890782364, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_SizeDelta.y
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156466205890782364, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00026783545
+      value: 0.0016978356
       objectReference: {fileID: 0}
     - target: {fileID: 1207257838630220920, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1282963143555445929, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00018310547
+      value: 0.001521829
       objectReference: {fileID: 0}
     - target: {fileID: 1390234051965789830, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -154,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1511885331949849018, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.99999756
       objectReference: {fileID: 0}
     - target: {fileID: 1511885331949849018, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Value
@@ -222,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201376303051678702, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.9999981
       objectReference: {fileID: 0}
     - target: {fileID: 2201376303051678702, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Value
@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230316827428591493, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00022125244
+      value: 0.0015295504
       objectReference: {fileID: 0}
     - target: {fileID: 4500540767588099492, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5488388682203411280, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5488388682203411280, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
     - target: {fileID: 5602170834552813043, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -686,11 +690,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7031551874129150426, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Size
-      value: 0.08404577
+      value: 0.084045745
       objectReference: {fileID: 0}
     - target: {fileID: 7031551874129150426, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_Value
-      value: 0.99999976
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7034448902564991821, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -862,7 +866,43 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: SupportedExtensions
+      Entry: 7
+      Data: 0|System.String[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: note
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SupportedFeatures
+      Entry: 7
+      Data: 1|System.String[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: Format:RGBA32
+    - Name: 
+      Entry: 1
+      Data: Format:RGB24
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SupportedManifestVersion
+      Entry: 3
+      Data: 1
   _udonSharpBackingUdonBehaviour: {fileID: 8068419832269840349}
   usUrls: []
   usUrlStrings: []
@@ -873,7 +913,7 @@ MonoBehaviour:
   vlVideoRenderer: {fileID: 0}
   vlLoadTimeout: 5
   devices:
-  - {fileID: 6909871268062179504}
+  - {fileID: 9084875739736594265}
 --- !u!114 &8068419832269840349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,9 +939,9 @@ MonoBehaviour:
   serializedPublicVariablesBytesString: Ai8AAAAAATIAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAFQAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AAAAAAAYBAAAAAAAAACcBBAAAAHQAeQBwAGUAAWgAAABTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEcAZQBuAGUAcgBpAGMALgBMAGkAcwB0AGAAMQBbAFsAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4ALgBJAG4AdABlAHIAZgBhAGMAZQBzAC4ASQBVAGQAbwBuAFYAYQByAGkAYQBiAGwAZQAsACAAVgBSAEMALgBVAGQAbwBuAC4AQwBvAG0AbQBvAG4AXQBdACwAIABtAHMAYwBvAHIAbABpAGIAAQEJAAAAVgBhAHIAaQBhAGIAbABlAHMALwEAAAABaAAAAFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ARwBlAG4AZQByAGkAYwAuAEwAaQBzAHQAYAAxAFsAWwBWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAEkAbgB0AGUAcgBmAGEAYwBlAHMALgBJAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlACwAIABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgBdAF0ALAAgAG0AcwBjAG8AcgBsAGkAYgABAAAABgEAAAAAAAAAAi8CAAAAAUkAAABWAFIAQwAuAFUAZABvAG4ALgBDAG8AbQBtAG8AbgAuAFUAZABvAG4AVgBhAHIAaQBhAGIAbABlAGAAMQBbAFsAUwB5AHMAdABlAG0ALgBJAG4AdAAzADIALAAgAG0AcwBjAG8AcgBsAGkAYgBdAF0ALAAgAFYAUgBDAC4AVQBkAG8AbgAuAEMAbwBtAG0AbwBuAAIAAAAGAgAAAAAAAAAnAQQAAAB0AHkAcABlAAEXAAAAUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwAsACAAbQBzAGMAbwByAGwAaQBiACcBCgAAAFMAeQBtAGIAbwBsAE4AYQBtAGUAAR8AAABfAF8AXwBVAGQAbwBuAFMAaABhAHIAcABCAGUAaABhAHYAaQBvAHUAcgBWAGUAcgBzAGkAbwBuAF8AXwBfACcBBAAAAHQAeQBwAGUAARYAAABTAHkAcwB0AGUAbQAuAEkAbgB0ADMAMgAsACAAbQBzAGMAbwByAGwAaQBiABcBBQAAAFYAYQBsAHUAZQACAAAABwUHBQcF
   publicVariablesUnityEngineObjects: []
   publicVariablesSerializationDataFormat: 0
---- !u!114 &6909871268062179504 stripped
+--- !u!114 &9084875739736594265 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7916643675693929657, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5488388682203411280, guid: 72334f698079a9843885087bfd7be0eb, type: 3}
   m_PrefabInstance: {fileID: 3619022957094003721}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2242110492313448252}
