@@ -29,6 +29,8 @@ namespace jp.ootr.ImageTab
         private bool _arIsLockRotateLocal;
         private TabletDirection _arLocalDirection = 0;
 
+        private readonly string[] _autoRotateDevicePrefix = new []{"AutoRotateDevice"};
+        
         public override void OnPickup()
         {
             _arIsHolding = true;
@@ -74,7 +76,7 @@ namespace jp.ootr.ImageTab
         protected virtual void ApplyDirectionToAnimator()
         {
             if (_arLocalDirection == _arDirection) return;
-            ConsoleDebug($"[ApplyDirectionToAnimator] current: {_arLocalDirection}, new: {_arDirection}");
+            ConsoleDebug($"direction changed: {_arLocalDirection} -> {_arDirection}", _autoRotateDevicePrefix);
             _arLocalDirection = _arDirection;
             animator.SetInteger(_animatorDirection, (int)_arDirection);
             SendCustomEventDelayedSeconds(nameof(OnDirectionChanged), UIAnimationDuration, EventTiming.LateUpdate);

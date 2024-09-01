@@ -14,6 +14,8 @@ namespace jp.ootr.ImageTab
 
         private readonly int _animatorHasBookmark = Animator.StringToHash("HasBookmark");
         private Toggle[] _uiBookmarkButtonToggles = new Toggle[0];
+        
+        private readonly string[] _uiBookmarkPrefix = new []{"UIBookmark"};
 
         public override void InitController()
         {
@@ -32,7 +34,7 @@ namespace jp.ootr.ImageTab
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)
             {
-                ConsoleError("[UpdateBookmark] Bookmark URLとBookmark Nameの数が一致しません");
+                ConsoleError($"bookmark urls and names length mismatch: {uIBookmarkUrls.Length} != {uIBookmarkNames.Length}", _uiBookmarkPrefix);
                 return;
             }
 

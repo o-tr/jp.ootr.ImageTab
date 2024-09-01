@@ -12,11 +12,13 @@ namespace jp.ootr.ImageTab
         private GameObject[] _uiHistoryButtons = new GameObject[0];
         private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
 
+        private readonly string[] _uiHistoryPrefix = new[] {"UIHistory"};
+        
         public virtual void UpdateHistoryUI(string[] urls, string[] filenames)
         {
             if (urls.Length != filenames.Length)
             {
-                ConsoleError("[UpdateHistoryUI] History URLとHistory Nameの数が一致しません");
+                ConsoleError($"history urls and filenames length mismatch: {urls.Length} != {filenames.Length}", _uiHistoryPrefix);
                 return;
             }
 
