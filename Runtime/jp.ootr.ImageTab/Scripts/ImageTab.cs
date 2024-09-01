@@ -74,7 +74,7 @@ namespace jp.ootr.ImageTab
 
             SetLoading(true);
             controller.CcReleaseTexture(_localSource, _localFileName);
-            controller.UnloadFilesFromUrl((IControlledDevice)this, _localSource);
+            controller.UnloadFilesFromUrl(this, _localSource);
             _localSource = _syncSource;
             _localFileName = _syncFileName;
             LLIFetchImage(_localSource, _syncSource == _syncFileName ? URLType.Image : URLType.TextZip);
