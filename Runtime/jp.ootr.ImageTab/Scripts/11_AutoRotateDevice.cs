@@ -21,6 +21,8 @@ namespace jp.ootr.ImageTab
         [Header("アニメーション用定数")] private readonly int _animatorDirection = Animator.StringToHash("Direction");
 
         private readonly int _animatorLockRotation = Animator.StringToHash("LockRotation");
+
+        private readonly string[] _autoRotateDevicePrefix = { "AutoRotateDevice" };
         [UdonSynced] private TabletDirection _arDirection = TabletDirection.Bottom;
         private bool _arIsHolding;
 
@@ -29,8 +31,6 @@ namespace jp.ootr.ImageTab
         private bool _arIsLockRotateLocal;
         private TabletDirection _arLocalDirection = 0;
 
-        private readonly string[] _autoRotateDevicePrefix = new []{"AutoRotateDevice"};
-        
         public override void OnPickup()
         {
             _arIsHolding = true;

@@ -8,17 +8,18 @@ namespace jp.ootr.ImageTab
     public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
+
+        private readonly string[] _uiHistoryPrefix = { "UIHistory" };
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];
         private GameObject[] _uiHistoryButtons = new GameObject[0];
         private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
 
-        private readonly string[] _uiHistoryPrefix = new[] {"UIHistory"};
-        
         public virtual void UpdateHistoryUI(string[] urls, string[] filenames)
         {
             if (urls.Length != filenames.Length)
             {
-                ConsoleError($"history urls and filenames length mismatch: {urls.Length} != {filenames.Length}", _uiHistoryPrefix);
+                ConsoleError($"history urls and filenames length mismatch: {urls.Length} != {filenames.Length}",
+                    _uiHistoryPrefix);
                 return;
             }
 
