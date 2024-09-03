@@ -21,6 +21,8 @@ namespace jp.ootr.ImageTab
         [Header("アニメーション用定数")] private readonly int _animatorDirection = Animator.StringToHash("Direction");
 
         private readonly int _animatorLockRotation = Animator.StringToHash("LockRotation");
+
+        private readonly string[] _autoRotateDevicePrefix = { "AutoRotateDevice" };
         [UdonSynced] private TabletDirection _arDirection = TabletDirection.Bottom;
         private bool _arIsHolding;
 
@@ -74,7 +76,7 @@ namespace jp.ootr.ImageTab
         protected virtual void ApplyDirectionToAnimator()
         {
             if (_arLocalDirection == _arDirection) return;
-            ConsoleDebug($"[ApplyDirectionToAnimator] current: {_arLocalDirection}, new: {_arDirection}");
+            ConsoleDebug($"direction changed: {_arLocalDirection} -> {_arDirection}", _autoRotateDevicePrefix);
             _arLocalDirection = _arDirection;
             animator.SetInteger(_animatorDirection, (int)_arDirection);
             SendCustomEventDelayedSeconds(nameof(OnDirectionChanged), UIAnimationDuration, EventTiming.LateUpdate);

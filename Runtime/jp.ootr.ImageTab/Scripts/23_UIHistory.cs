@@ -8,6 +8,8 @@ namespace jp.ootr.ImageTab
     public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
+
+        private readonly string[] _uiHistoryPrefix = { "UIHistory" };
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];
         private GameObject[] _uiHistoryButtons = new GameObject[0];
         private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
@@ -16,7 +18,8 @@ namespace jp.ootr.ImageTab
         {
             if (urls.Length != filenames.Length)
             {
-                ConsoleError("[UpdateHistoryUI] History URLとHistory Nameの数が一致しません");
+                ConsoleError($"history urls and filenames length mismatch: {urls.Length} != {filenames.Length}",
+                    _uiHistoryPrefix);
                 return;
             }
 

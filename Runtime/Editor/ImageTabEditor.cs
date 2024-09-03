@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using jp.ootr.common;
 using jp.ootr.ImageDeviceController.Editor;
 using UnityEditor;
@@ -90,3 +91,4 @@ namespace jp.ootr.ImageTab.Editor
         }
     }
 }
+#endif

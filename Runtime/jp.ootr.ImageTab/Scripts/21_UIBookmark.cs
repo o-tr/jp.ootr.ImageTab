@@ -13,6 +13,8 @@ namespace jp.ootr.ImageTab
         [SerializeField] private GameObject uIOriginalBookmarkButton;
 
         private readonly int _animatorHasBookmark = Animator.StringToHash("HasBookmark");
+
+        private readonly string[] _uiBookmarkPrefix = { "UIBookmark" };
         private Toggle[] _uiBookmarkButtonToggles = new Toggle[0];
 
         public override void InitController()
@@ -32,7 +34,9 @@ namespace jp.ootr.ImageTab
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)
             {
-                ConsoleError("[UpdateBookmark] Bookmark URLとBookmark Nameの数が一致しません");
+                ConsoleError(
+                    $"bookmark urls and names length mismatch: {uIBookmarkUrls.Length} != {uIBookmarkNames.Length}",
+                    _uiBookmarkPrefix);
                 return;
             }
 
