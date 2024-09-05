@@ -45,7 +45,7 @@ namespace jp.ootr.ImageTab
                 }
             }
 
-            uIDeviceListContainer.ToListChildrenVertical(adjustHeight: true);
+            uIDeviceListContainer.ToListChildrenVertical(0,0,true);
         }
     }
 }
