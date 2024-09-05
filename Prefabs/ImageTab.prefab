@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -4767,7 +4767,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5068,7 +5068,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5220,7 +5220,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5355,7 +5355,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -5865,7 +5865,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -8566,7 +8566,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -10405,7 +10405,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1061264739079975055}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendCustomEvent
         m_Mode: 5
@@ -12783,6 +12783,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3392491913851663145, guid: 270ab47512fe7934196f541695ef2907, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1061264739079975055}
+    - target: {fileID: 3392491913851663145, guid: 270ab47512fe7934196f541695ef2907, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SendCustomEvent
       objectReference: {fileID: 0}
@@ -13285,6 +13289,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9022346983763826733}
     m_Modifications:
+    - target: {fileID: 4079871079577843496, guid: 4725a69d5693c4c4492e0f6d05cbe4fe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 4079871079577843496, guid: 4725a69d5693c4c4492e0f6d05cbe4fe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SendCustomEvent
