@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using jp.ootr.common;
+using UnityEngine;
 using UnityEngine.UI;
 using VRC.Udon.Common.Enums;
 using static jp.ootr.common.UI;
@@ -23,6 +24,8 @@ namespace jp.ootr.ImageTab
 
         public virtual void UpdateDeviceList()
         {
+            uIDeviceListContainer.ClearChildren();
+            
             DeviceListButtonToggles = new Toggle[devices.Length];
             DeviceListButtonSliders = new Slider[devices.Length];
             for (var i = 0; i < devices.Length; i++)
@@ -43,6 +46,8 @@ namespace jp.ootr.ImageTab
                         button.transform.Find("Image").GetComponent<Image>().sprite = uIDeviceScreenIcon;
                         break;
                 }
+
+                button.name = device.deviceUuid;
             }
 
             uIDeviceListContainer.ToListChildrenVertical(0,0,true);
