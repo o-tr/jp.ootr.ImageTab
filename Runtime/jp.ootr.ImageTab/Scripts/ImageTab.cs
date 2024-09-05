@@ -45,7 +45,7 @@ namespace jp.ootr.ImageTab
             if (_isLoading || urlStr.IsNullOrEmpty() || _syncSource == url.ToString()) return;
             if (!urlStr.IsValidUrl(out var error))
             {
-                OnFilesLoadFailed(error);
+                ShowError(error);
                 return;
             }
 
