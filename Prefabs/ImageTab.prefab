@@ -4591,6 +4591,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 1061264739079975055}
+  logLevel: 0
   deviceName: ImageTab
   deviceIcon: {fileID: 2800000, guid: 88d6bbccb7302be4498888d1f2958abb, type: 3}
   animator: {fileID: 5630044862094040036}
@@ -12761,6 +12762,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 694176632822712310, guid: 270ab47512fe7934196f541695ef2907, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1061264739079975055}
     - target: {fileID: 694176632822712310, guid: 270ab47512fe7934196f541695ef2907, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SendCustomEvent
