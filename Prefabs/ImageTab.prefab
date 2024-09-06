@@ -4599,6 +4599,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   splashImage: {fileID: 0}
   splashImageFitter: {fileID: 0}
+  splashImageTexture: {fileID: 0}
   deviceUuid: dc8143a8-39ec-4a92-bc65-b57e543c6783
   arWatchInterval: 0.2
   arAnchorTop: {fileID: 6787314649853063368}
