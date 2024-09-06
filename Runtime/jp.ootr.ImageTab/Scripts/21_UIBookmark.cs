@@ -55,7 +55,7 @@ namespace jp.ootr.ImageTab
                 _uiBookmarkButtonToggles[i] = toggle;
             }
 
-            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(adjustHeight: true);
+            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(0,0,true);
 
             SendCustomEventDelayedFrames(nameof(UpdateFooter), 0, EventTiming.LateUpdate);
         }

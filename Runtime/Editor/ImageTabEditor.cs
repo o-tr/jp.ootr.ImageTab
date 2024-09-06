@@ -12,24 +12,25 @@ namespace jp.ootr.ImageTab.Editor
     public class ImageTabEditor : CommonDeviceEditor
     {
         private SerializedProperty _arWatchInterval;
+        private SerializedProperty _uiBookmarkNames;
+        private SerializedProperty _uiBookmarkUrls;
 
         public override void OnEnable()
         {
             base.OnEnable();
             _arWatchInterval = serializedObject.FindProperty("arWatchInterval");
+            _uiBookmarkNames = serializedObject.FindProperty("uIBookmarkNames");
+            _uiBookmarkUrls = serializedObject.FindProperty("uIBookmarkUrls");
         }
 
         protected override void ShowContent()
         {
             EditorGUILayout.Space();
-            var so = new SerializedObject(target);
+            serializedObject.Update();
             EditorGUILayout.PropertyField(_arWatchInterval, new GUIContent("Rotation Check Interval"));
-            so.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
             EditorGUILayout.Space();
-            EditorGUI.BeginChangeCheck();
             BuildBookmark((ImageTab)target);
-            if (!EditorGUI.EndChangeCheck()) return;
-            EditorUtility.SetDirty(target);
         }
 
         protected override void ShowScriptName()
@@ -42,29 +43,26 @@ namespace jp.ootr.ImageTab.Editor
             var newSize = Mathf.Max(script.uIBookmarkNames.Length, script.uIBookmarkUrls.Length);
             if (script.uIBookmarkNames.Length != newSize || script.uIBookmarkUrls.Length != newSize)
             {
-                Array.Resize(ref script.uIBookmarkNames, newSize);
-                Array.Resize(ref script.uIBookmarkUrls, newSize);
+                _uiBookmarkNames.arraySize = newSize;
+                _uiBookmarkUrls.arraySize = newSize;
             }
 
             EditorGUILayout.LabelField("Bookmarks", EditorStyles.boldLabel);
+            serializedObject.Update();
 
             for (var i = 0; i < newSize; i++)
             {
                 EditorGUILayout.BeginHorizontal();
-                script.uIBookmarkNames[i] = EditorGUILayout.TextField(script.uIBookmarkNames[i]);
-                script.uIBookmarkUrls[i] = new VRCUrl(EditorGUILayout.TextField(script.uIBookmarkUrls[i].ToString()));
-
+                
+                EditorGUILayout.PropertyField(_uiBookmarkNames.GetArrayElementAtIndex(i), GUIContent.none);
+                EditorGUILayout.PropertyField(_uiBookmarkUrls.GetArrayElementAtIndex(i), GUIContent.none);
+                
+                
                 if (GUILayout.Button("Remove"))
                 {
                     newSize--;
-                    var tmpNames = new string[newSize];
-                    var tmpUrls = new VRCUrl[newSize];
-                    Array.Copy(script.uIBookmarkNames, tmpNames, i);
-                    Array.Copy(script.uIBookmarkNames, i + 1, tmpNames, i, newSize - i);
-                    Array.Copy(script.uIBookmarkUrls, tmpUrls, i);
-                    Array.Copy(script.uIBookmarkUrls, i + 1, tmpUrls, i, newSize - i);
-                    script.uIBookmarkNames = tmpNames;
-                    script.uIBookmarkUrls = tmpUrls;
+                    _uiBookmarkNames.DeleteArrayElementAtIndex(i);
+                    _uiBookmarkUrls.DeleteArrayElementAtIndex(i);
                 }
 
                 EditorGUILayout.EndHorizontal();
@@ -75,19 +73,20 @@ namespace jp.ootr.ImageTab.Editor
             if (GUILayout.Button("Add Element"))
             {
                 newSize++;
-                Array.Resize(ref script.uIBookmarkNames, newSize);
-                Array.Resize(ref script.uIBookmarkUrls, newSize);
+                _uiBookmarkNames.arraySize = newSize;
+                _uiBookmarkUrls.arraySize = newSize;
             }
 
             if (GUILayout.Button("Remove Last Element"))
                 if (newSize > 0)
                 {
                     newSize--;
-                    Array.Resize(ref script.uIBookmarkNames, newSize);
-                    Array.Resize(ref script.uIBookmarkUrls, newSize);
+                    _uiBookmarkNames.arraySize = newSize;
+                    _uiBookmarkUrls.arraySize = newSize;
                 }
 
             EditorGUILayout.EndHorizontal();
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

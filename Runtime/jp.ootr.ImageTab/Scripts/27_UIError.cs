@@ -12,6 +12,11 @@ namespace jp.ootr.ImageTab
         public override void OnFilesLoadFailed(LoadError error)
         {
             base.OnFilesLoadFailed(error);
+            ShowError(error);
+        }
+        
+        protected void ShowError(LoadError error)
+        {
             error.ParseMessage(out var title, out var message);
             uIErrorTitle.text = title;
             uIErrorMessage.text = message;
