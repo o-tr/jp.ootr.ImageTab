@@ -40,7 +40,7 @@ namespace jp.ootr.ImageTab
             }
             else if (_uiHistoryButtons.Length > urls.Length)
             {
-                for (var i = urls.Length; i < _uiHistoryButtons.Length; i++) Destroy(_uiHistoryButtons[i]);
+                for (var i = urls.Length; i < _uiHistoryButtons.Length; i++) DestroyImmediate(_uiHistoryButtons[i]);
                 _uiHistoryButtons = _uiHistoryButtons.Resize(urls.Length);
                 _uiHistoryButtonToggles = _uiHistoryButtonToggles.Resize(urls.Length);
                 _uiHistoryButtonInputFields = _uiHistoryButtonInputFields.Resize(urls.Length);
