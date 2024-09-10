@@ -8,11 +8,20 @@ namespace jp.ootr.ImageTab
     public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
+        [SerializeField] private bool uIHistoryDisabled;
 
         private readonly string[] _uiHistoryPrefix = { "UIHistory" };
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];
         private GameObject[] _uiHistoryButtons = new GameObject[0];
         private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
+        
+        private readonly int _animatorIsHistoryDisabled = Animator.StringToHash("IsHistoryDisabled");
+
+        public override void InitController()
+        {
+            base.InitController();
+            animator.SetBool(_animatorIsHistoryDisabled, uIHistoryDisabled);
+        }
 
         public virtual void UpdateHistoryUI(string[] urls, string[] filenames)
         {

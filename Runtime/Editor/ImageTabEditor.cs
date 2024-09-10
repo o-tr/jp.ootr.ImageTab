@@ -14,6 +14,7 @@ namespace jp.ootr.ImageTab.Editor
         private SerializedProperty _arWatchInterval;
         private SerializedProperty _uiBookmarkNames;
         private SerializedProperty _uiBookmarkUrls;
+        private SerializedProperty _uiHistoryDisabled;
 
         public override void OnEnable()
         {
@@ -21,6 +22,7 @@ namespace jp.ootr.ImageTab.Editor
             _arWatchInterval = serializedObject.FindProperty("arWatchInterval");
             _uiBookmarkNames = serializedObject.FindProperty("uIBookmarkNames");
             _uiBookmarkUrls = serializedObject.FindProperty("uIBookmarkUrls");
+            _uiHistoryDisabled = serializedObject.FindProperty("uIHistoryDisabled");
         }
 
         protected override void ShowContent()
@@ -28,6 +30,9 @@ namespace jp.ootr.ImageTab.Editor
             EditorGUILayout.Space();
             serializedObject.Update();
             EditorGUILayout.PropertyField(_arWatchInterval, new GUIContent("Rotation Check Interval"));
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_uiHistoryDisabled, new GUIContent("Disable History"));
+            EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();
             EditorGUILayout.Space();
             BuildBookmark((ImageTab)target);
