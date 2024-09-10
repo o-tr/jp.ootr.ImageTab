@@ -4617,11 +4617,14 @@ MonoBehaviour:
   uIBookmarkNames: []
   uIOriginalBookmarkButton: {fileID: 1215315567887163606}
   uIOriginalHistoryButton: {fileID: 4160286413516484864}
+  uIHistoryDisabled: 0
   uIErrorTitle: {fileID: 7515315160584072894}
   uIErrorMessage: {fileID: 6773991918760296350}
   inputField: {fileID: 4839360843786961736}
   image: {fileID: 3937489300849477754}
   aspectRatioFitter: {fileID: 4655774779730696241}
+  rootGameObject: {fileID: 6723728149490601525}
+  isObjectSyncEnabled: 1
 --- !u!114 &1061264739079975055
 MonoBehaviour:
   m_ObjectHideFlags: 0
