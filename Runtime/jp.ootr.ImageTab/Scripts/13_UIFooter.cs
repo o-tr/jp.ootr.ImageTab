@@ -31,13 +31,11 @@ namespace jp.ootr.ImageTab
             var castableDeviceCount = 0;
             foreach (var device in devices)
             {
-                if (device == null) continue;
+                if (device == null || device.deviceUuid == deviceUuid) continue;
                 if (device.IsCastableDevice()) castableDeviceCount++;
             }
 
-            //自分が含まれるので2以上
-            uICastModalButton.SetActive(castableDeviceCount > 1);
-            base.InitController();
+            uICastModalButton.SetActive(castableDeviceCount > 0);
         }
     }
 }

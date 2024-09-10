@@ -4,7 +4,10 @@ using jp.ootr.common;
 using jp.ootr.ImageDeviceController.Editor;
 using UnityEditor;
 using UnityEngine;
+using VRC.SDK3.Components;
 using VRC.SDKBase;
+using VRC.SDKBase.Editor.BuildPipeline;
+using Object = UnityEngine.Object;
 
 namespace jp.ootr.ImageTab.Editor
 {
@@ -14,6 +17,9 @@ namespace jp.ootr.ImageTab.Editor
         private SerializedProperty _arWatchInterval;
         private SerializedProperty _uiBookmarkNames;
         private SerializedProperty _uiBookmarkUrls;
+        private SerializedProperty _uiHistoryDisabled;
+        private SerializedProperty _isObjectSyncEnabled;
+        private SerializedProperty _isPickupEnabled;
 
         public override void OnEnable()
         {
@@ -21,6 +27,9 @@ namespace jp.ootr.ImageTab.Editor
             _arWatchInterval = serializedObject.FindProperty("arWatchInterval");
             _uiBookmarkNames = serializedObject.FindProperty("uIBookmarkNames");
             _uiBookmarkUrls = serializedObject.FindProperty("uIBookmarkUrls");
+            _uiHistoryDisabled = serializedObject.FindProperty("uIHistoryDisabled");
+            _isObjectSyncEnabled = serializedObject.FindProperty("isObjectSyncEnabled");
+            _isPickupEnabled = serializedObject.FindProperty("isPickupEnabled");
         }
 
         protected override void ShowContent()
@@ -28,6 +37,18 @@ namespace jp.ootr.ImageTab.Editor
             EditorGUILayout.Space();
             serializedObject.Update();
             EditorGUILayout.PropertyField(_arWatchInterval, new GUIContent("Rotation Check Interval"));
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_uiHistoryDisabled, new GUIContent("Disable History"));
+            EditorGUILayout.Space();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(_isObjectSyncEnabled, new GUIContent("Enable Object Sync"));
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_isPickupEnabled, new GUIContent("Enable Pickup"));
+            if (EditorGUI.EndChangeCheck())
+            {
+                ImageTabUtils.UpdateObjectSync((ImageTab)target);
+                ImageTabUtils.UpdatePickup((ImageTab)target);
+            }
             serializedObject.ApplyModifiedProperties();
             EditorGUILayout.Space();
             BuildBookmark((ImageTab)target);
@@ -87,6 +108,69 @@ namespace jp.ootr.ImageTab.Editor
 
             EditorGUILayout.EndHorizontal();
             serializedObject.ApplyModifiedProperties();
+        }
+    }
+    
+    [InitializeOnLoad]
+    public class PlayModeNotifier
+    {
+        static PlayModeNotifier()
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredEditMode)
+            {
+                var imageTab = ComponentUtils.GetAllComponents<ImageTab>();
+                foreach (var tab in imageTab)
+                {
+                    ImageTabUtils.UpdateObjectSync(tab);
+                    ImageTabUtils.UpdatePickup(tab);
+                }
+            }
+        }
+    }
+    
+    public class SetObjectReferences : UnityEditor.Editor, IVRCSDKBuildRequestedCallback
+    {
+        public int callbackOrder => 12;
+
+        public bool OnBuildRequested(VRCSDKRequestedBuildType requestedBuildType)
+        {
+            var imageTab = ComponentUtils.GetAllComponents<ImageTab>();
+            foreach (var tab in imageTab)
+            {
+                ImageTabUtils.UpdateObjectSync(tab);
+                ImageTabUtils.UpdatePickup(tab);
+            }
+
+            return true;
+        }
+    }
+
+    public static class ImageTabUtils
+    {
+        public static void UpdateObjectSync(ImageTab script)
+        {
+            var currentSyncObj = script.rootGameObject.GetComponent<VRCObjectSync>();
+            if (script.isObjectSyncEnabled)
+            {
+                if (currentSyncObj == null) script.rootGameObject.AddComponent<VRCObjectSync>();
+            }
+            else
+            {
+                if (currentSyncObj != null) Object.DestroyImmediate(currentSyncObj);
+            }
+        }
+        
+        public static void UpdatePickup(ImageTab script)
+        {
+            var so = new SerializedObject(script.pickupCollider);
+            so.Update();
+            so.FindProperty("m_Enabled").boolValue = !script.isPickupEnabled;
+            so.ApplyModifiedProperties();
         }
     }
 }
