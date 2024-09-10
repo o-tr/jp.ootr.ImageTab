@@ -18,7 +18,9 @@ namespace jp.ootr.ImageTab
         [SerializeField] private AspectRatioFitter aspectRatioFitter;
         
         [SerializeField] public GameObject rootGameObject;
+        [SerializeField] public BoxCollider pickupCollider;
         [SerializeField] public bool isObjectSyncEnabled = true;
+        [SerializeField] public bool isPickupEnabled = true;
         
         private readonly int _animatorIsLoading = Animator.StringToHash("IsLoading");
 

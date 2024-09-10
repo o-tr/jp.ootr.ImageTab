@@ -4624,7 +4624,9 @@ MonoBehaviour:
   image: {fileID: 3937489300849477754}
   aspectRatioFitter: {fileID: 4655774779730696241}
   rootGameObject: {fileID: 6723728149490601525}
+  pickupCollider: {fileID: 4508150202983583777}
   isObjectSyncEnabled: 1
+  isPickupEnabled: 1
 --- !u!114 &1061264739079975055
 MonoBehaviour:
   m_ObjectHideFlags: 0

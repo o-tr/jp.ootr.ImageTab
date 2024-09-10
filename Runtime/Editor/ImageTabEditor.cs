@@ -19,6 +19,7 @@ namespace jp.ootr.ImageTab.Editor
         private SerializedProperty _uiBookmarkUrls;
         private SerializedProperty _uiHistoryDisabled;
         private SerializedProperty _isObjectSyncEnabled;
+        private SerializedProperty _isPickupEnabled;
 
         public override void OnEnable()
         {
@@ -28,6 +29,7 @@ namespace jp.ootr.ImageTab.Editor
             _uiBookmarkUrls = serializedObject.FindProperty("uIBookmarkUrls");
             _uiHistoryDisabled = serializedObject.FindProperty("uIHistoryDisabled");
             _isObjectSyncEnabled = serializedObject.FindProperty("isObjectSyncEnabled");
+            _isPickupEnabled = serializedObject.FindProperty("isPickupEnabled");
         }
 
         protected override void ShowContent()
@@ -40,10 +42,12 @@ namespace jp.ootr.ImageTab.Editor
             EditorGUILayout.Space();
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(_isObjectSyncEnabled, new GUIContent("Enable Object Sync"));
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_isPickupEnabled, new GUIContent("Enable Pickup"));
             if (EditorGUI.EndChangeCheck())
             {
-                serializedObject.ApplyModifiedProperties();
                 ImageTabUtils.UpdateObjectSync((ImageTab)target);
+                ImageTabUtils.UpdatePickup((ImageTab)target);
             }
             serializedObject.ApplyModifiedProperties();
             EditorGUILayout.Space();
@@ -123,6 +127,7 @@ namespace jp.ootr.ImageTab.Editor
                 foreach (var tab in imageTab)
                 {
                     ImageTabUtils.UpdateObjectSync(tab);
+                    ImageTabUtils.UpdatePickup(tab);
                 }
             }
         }
@@ -138,6 +143,7 @@ namespace jp.ootr.ImageTab.Editor
             foreach (var tab in imageTab)
             {
                 ImageTabUtils.UpdateObjectSync(tab);
+                ImageTabUtils.UpdatePickup(tab);
             }
 
             return true;
@@ -157,6 +163,14 @@ namespace jp.ootr.ImageTab.Editor
             {
                 if (currentSyncObj != null) Object.DestroyImmediate(currentSyncObj);
             }
+        }
+        
+        public static void UpdatePickup(ImageTab script)
+        {
+            var so = new SerializedObject(script.pickupCollider);
+            so.Update();
+            so.FindProperty("m_Enabled").boolValue = !script.isPickupEnabled;
+            so.ApplyModifiedProperties();
         }
     }
 }
