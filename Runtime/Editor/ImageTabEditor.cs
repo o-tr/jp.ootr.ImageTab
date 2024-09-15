@@ -44,12 +44,12 @@ namespace jp.ootr.ImageTab.Editor
             EditorGUILayout.PropertyField(_isObjectSyncEnabled, new GUIContent("Enable Object Sync"));
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_isPickupEnabled, new GUIContent("Enable Pickup"));
+            serializedObject.ApplyModifiedProperties();
             if (EditorGUI.EndChangeCheck())
             {
                 ImageTabUtils.UpdateObjectSync((ImageTab)target);
                 ImageTabUtils.UpdatePickup((ImageTab)target);
             }
-            serializedObject.ApplyModifiedProperties();
             EditorGUILayout.Space();
             BuildBookmark((ImageTab)target);
         }
@@ -169,7 +169,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var so = new SerializedObject(script.pickupCollider);
             so.Update();
-            so.FindProperty("m_Enabled").boolValue = !script.isPickupEnabled;
+            so.FindProperty("m_Enabled").boolValue = script.isPickupEnabled;
             so.ApplyModifiedProperties();
         }
     }
