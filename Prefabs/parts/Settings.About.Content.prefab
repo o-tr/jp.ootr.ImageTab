@@ -663,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ImageTab v0.2.3
+  m_text: ImageTab v0.2.4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7758130c7e489894db77d74ac7b81c3c, type: 2}
   m_sharedMaterial: {fileID: -6069958157732398970, guid: 7758130c7e489894db77d74ac7b81c3c, type: 2}
