@@ -10,6 +10,7 @@ namespace jp.ootr.ImageTab
     {
         [SerializeField] public string[] uIBookmarkUrls = new string[0];
         [SerializeField] public string[] uIBookmarkNames = new string[0];
+        [SerializeField] public VRCUrl[] uIToStoreUrls = new VRCUrl[0];
         [SerializeField] private GameObject uIOriginalBookmarkButton;
 
         private readonly int _animatorHasBookmark = Animator.StringToHash("HasBookmark");
@@ -20,9 +21,15 @@ namespace jp.ootr.ImageTab
         public override void InitController()
         {
             base.InitController();
+            StoreBookmarkUrls();
             UpdateBookmark();
         }
-
+        
+        protected virtual void StoreBookmarkUrls()
+        {
+            foreach (var url in uIToStoreUrls) controller.UsAddUrlLocal(url);
+        }
+        
         protected virtual void UpdateBookmark()
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)

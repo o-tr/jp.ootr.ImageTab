@@ -198,14 +198,12 @@ namespace jp.ootr.ImageTab.Editor
 
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
-            if (state == PlayModeStateChange.EnteredEditMode)
+            var imageTab = ComponentUtils.GetAllComponents<ImageTab>();
+            foreach (var tab in imageTab)
             {
-                var imageTab = ComponentUtils.GetAllComponents<ImageTab>();
-                foreach (var tab in imageTab)
-                {
-                    ImageTabUtils.UpdateObjectSync(tab);
-                    ImageTabUtils.UpdatePickup(tab);
-                }
+                ImageTabUtils.UpdateObjectSync(tab);
+                ImageTabUtils.UpdatePickup(tab);
+                ImageTabUtils.UpdateVRCUrlStore(tab);
             }
         }
     }
@@ -221,6 +219,7 @@ namespace jp.ootr.ImageTab.Editor
             {
                 ImageTabUtils.UpdateObjectSync(tab);
                 ImageTabUtils.UpdatePickup(tab);
+                ImageTabUtils.UpdateVRCUrlStore(tab);
             }
 
             return true;
@@ -248,6 +247,18 @@ namespace jp.ootr.ImageTab.Editor
             so.Update();
             so.FindProperty("m_Enabled").boolValue = script.isPickupEnabled;
             so.ApplyModifiedProperties();
+        }
+
+        public static void UpdateVRCUrlStore(ImageTab script)
+        {
+            var so = new SerializedObject(script);
+            so.Update();
+            var urls = so.FindProperty("uIToStoreUrls");
+            urls.arraySize = script.uIBookmarkUrls.Length;
+            for (int i = 0; i < script.uIBookmarkUrls.Length; i++)
+            {
+                urls.GetArrayElementAtIndex(i).managedReferenceValue = new VRCUrl(script.uIBookmarkUrls[i]);
+            }
         }
     }
 }
