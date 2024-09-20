@@ -1,0 +1,26 @@
+.table-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bookmark-label{
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.bookmark-field>Label{
+    max-width: none;
+    min-width: 0;
+}
+
+.bookmark-label.name,
+.bookmark-label.url,
+.bookmark-field.name,
+.bookmark-field.url{
+    flex: 1;
+}
+
+.bookmark-button{
+    width: 25px;
+}
