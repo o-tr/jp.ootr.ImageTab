@@ -257,8 +257,10 @@ namespace jp.ootr.ImageTab.Editor
             urls.arraySize = script.uIBookmarkUrls.Length;
             for (int i = 0; i < script.uIBookmarkUrls.Length; i++)
             {
-                urls.GetArrayElementAtIndex(i).managedReferenceValue = new VRCUrl(script.uIBookmarkUrls[i]);
+                var vrcUrl = urls.GetArrayElementAtIndex(i);
+                vrcUrl.FindPropertyRelative("url").stringValue = script.uIBookmarkUrls[i];
             }
+            so.ApplyModifiedProperties();
         }
     }
 }
