@@ -4129,7 +4129,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5688439922233641297}
   m_HandleRect: {fileID: 4859939205859242916}
   m_Direction: 2
-  m_Value: 1.0000336
+  m_Value: 1.0000153
   m_Size: 0.96666646
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4600,7 +4600,7 @@ MonoBehaviour:
   splashImage: {fileID: 0}
   splashImageFitter: {fileID: 0}
   splashImageTexture: {fileID: 0}
-  deviceUuid: dc8143a8-39ec-4a92-bc65-b57e543c6783
+  deviceUuid: 
   arWatchInterval: 0.2
   arAnchorTop: {fileID: 6787314649853063368}
   arAnchorBottom: {fileID: 5291220489377781400}
@@ -5493,7 +5493,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5208330879468002635}
   m_HandleRect: {fileID: 7534823909665766046}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7676,7 +7676,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3736263555747832656}
   m_HandleRect: {fileID: 3152604355939220878}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7802,8 +7802,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4557239007154202004}
   m_HandleRect: {fileID: 369675214934136848}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.08404576
+  m_Value: 1
+  m_Size: 0.084045775
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

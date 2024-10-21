@@ -9,7 +9,7 @@ namespace jp.ootr.ImageTab
     {
         private const float UIAnimationDuration = 0.25f;
 
-        [Header("同期間隔")] [SerializeField] [Range(0.01f, 1f)]
+        [SerializeField] [Range(0.01f, 1f)]
         public float arWatchInterval = 0.2f;
 
         [Header("回転検知用")] [SerializeField] private Transform arAnchorTop;

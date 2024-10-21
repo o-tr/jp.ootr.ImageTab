@@ -1,7 +1,7 @@
 ﻿{
   "name": "jp.ootr.image-tab",
   "displayName": "ImageTab",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "license": "MIT",
   "unity": "2022.3",
   "description": "Image tablet gimmick for VRChat",
@@ -17,8 +17,8 @@
   "vpmDependencies": {
     "com.vrchat.base": "^3.6.1",
     "com.vrchat.worlds": "^3.6.1",
-    "jp.ootr.common": "~0.0.10",
-    "jp.ootr.image-device-controller": "~0.2.3"
+    "jp.ootr.common": "~0.1.1",
+    "jp.ootr.image-device-controller": "~0.3.1"
   },
   "legacyFolders": {
     "Assets\\jp.ootr\\imagetab": "44c35e5266e08d948a1cfe3898d9a753"

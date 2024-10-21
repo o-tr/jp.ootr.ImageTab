@@ -8,8 +8,9 @@ namespace jp.ootr.ImageTab
 {
     public class UIBookmark : UIDeviceName
     {
-        [SerializeField] public VRCUrl[] uIBookmarkUrls = new VRCUrl[0];
+        [SerializeField] public string[] uIBookmarkUrls = new string[0];
         [SerializeField] public string[] uIBookmarkNames = new string[0];
+        [SerializeField] public VRCUrl[] uIToStoreUrls = new VRCUrl[0];
         [SerializeField] private GameObject uIOriginalBookmarkButton;
 
         private readonly int _animatorHasBookmark = Animator.StringToHash("HasBookmark");
@@ -23,13 +24,12 @@ namespace jp.ootr.ImageTab
             StoreBookmarkUrls();
             UpdateBookmark();
         }
-
+        
         protected virtual void StoreBookmarkUrls()
         {
-            if (uIBookmarkUrls.Length == 0) return;
-            foreach (var url in uIBookmarkUrls) controller.UsAddUrlLocal(url);
+            foreach (var url in uIToStoreUrls) controller.UsAddUrlLocal(url);
         }
-
+        
         protected virtual void UpdateBookmark()
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)
@@ -65,9 +65,7 @@ namespace jp.ootr.ImageTab
             if (!_uiBookmarkButtonToggles.HasChecked(out var index)) return;
             var url = uIBookmarkUrls[index];
             if (url == null) return;
-            controller.UsAddUrl(url);
-            var urlStr = url.ToString();
-            LoadImage(urlStr, urlStr, true);
+            LoadImage(url, url, true);
         }
     }
 }
