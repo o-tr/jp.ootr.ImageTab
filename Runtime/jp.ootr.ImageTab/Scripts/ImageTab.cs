@@ -83,7 +83,9 @@ namespace jp.ootr.ImageTab
             controller.UnloadFilesFromUrl(this, _localSource);
             _localSource = _syncSource;
             _localFileName = _syncFileName;
-            LLIFetchImage(_localSource, _syncSource == _syncFileName ? URLType.Image : URLType.TextZip);
+            _localFileName.ParseFileName(out var type, out var options);
+            
+            LLIFetchImage(_localSource, type, options);
         }
 
         public void ClearUrl()
