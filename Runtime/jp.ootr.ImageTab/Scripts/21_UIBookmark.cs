@@ -49,7 +49,7 @@ namespace jp.ootr.ImageTab
             {
                 var itemUrl = uIBookmarkUrls[i];
                 var itemName = uIBookmarkNames[i];
-                if (itemUrl == null || itemName == null) continue;
+                if (!Utilities.IsValid(itemUrl) || !Utilities.IsValid(itemName)) continue;
                 CreateButton(i, itemName, uIOriginalBookmarkButton, out var void1, out var void2, out var void3,
                     out var void4, out var toggle);
                 _uiBookmarkButtonToggles[i] = toggle;
@@ -64,7 +64,7 @@ namespace jp.ootr.ImageTab
         {
             if (!_uiBookmarkButtonToggles.HasChecked(out var index)) return;
             var url = uIBookmarkUrls[index];
-            if (url == null) return;
+            if (!Utilities.IsValid(url)) return;
             LoadImage(url, url, true);
         }
     }

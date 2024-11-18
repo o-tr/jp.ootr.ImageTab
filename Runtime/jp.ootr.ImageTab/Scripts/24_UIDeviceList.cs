@@ -1,4 +1,5 @@
 ﻿using jp.ootr.ImageDeviceController.CommonDevice;
+using VRC.SDKBase;
 using static jp.ootr.common.UI;
 
 namespace jp.ootr.ImageTab
@@ -11,7 +12,7 @@ namespace jp.ootr.ImageTab
             var index = (int)DeviceListButtonSliders[offset].value;
             if (index < 0 || index >= devices.Length) return;
             var device = devices[index];
-            if (device == null) return;
+            if (!Utilities.IsValid(device)) return;
             if (!device.IsCastableDevice()) return;
             CastImageToDevice(device);
         }
@@ -24,7 +25,7 @@ namespace jp.ootr.ImageTab
         {
             foreach (var device in devices)
             {
-                if (device == null) continue;
+                if (!Utilities.IsValid(device)) continue;
                 if (!device.IsCastableDevice()) return;
                 if (device.GetDeviceUuid() == deviceUuid) continue;
                 CastImageToDevice(device);
@@ -35,7 +36,7 @@ namespace jp.ootr.ImageTab
         {
             foreach (var device in devices)
             {
-                if (device == null) continue;
+                if (!Utilities.IsValid(device)) continue;
                 if (!device.IsCastableDevice()) return;
                 if (device.GetDeviceUuid() == deviceUuid) continue;
                 device.ShowScreenName();
