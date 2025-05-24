@@ -24,15 +24,15 @@ namespace jp.ootr.ImageTab
 
     public static class ImageSlideSyncActionExtensions
     {
-        public static ImageSlideSyncAction ToSyncAction(this URLType type)
+        public static ImageSlideSyncAction ToSyncAction(this SourceType type)
         {
             switch (type)
             {
-                case URLType.Image:
+                case SourceType.Image:
                     return ImageSlideSyncAction.AddImage;
-                case URLType.TextZip:
+                case SourceType.TextZip:
                     return ImageSlideSyncAction.AddTextZip;
-                case URLType.Video:
+                case SourceType.Video:
                     return ImageSlideSyncAction.AddVideo;
                 default:
                     return ImageSlideSyncAction.None;

@@ -9,9 +9,9 @@ namespace jp.ootr.ImageTab
         [SerializeField] private InputField uIErrorTitle;
         [SerializeField] private InputField uIErrorMessage;
 
-        public override void OnFilesLoadFailed(LoadError error)
+        public override void OnSourceLoadFailed(LoadError error)
         {
-            base.OnFilesLoadFailed(error);
+            base.OnSourceLoadFailed(error);
             ShowError(error);
         }
         

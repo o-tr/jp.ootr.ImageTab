@@ -60,11 +60,11 @@ namespace jp.ootr.ImageTab
             LoadImage(urlStr, urlStr, true);
         }
 
-        public override void LoadImage(string source, string fileName, bool shouldPushHistory = false)
+        public override void LoadImage(string sourceUrl, string fileUrl, bool shouldPushHistory = false)
         {
             _shouldPushHistory = shouldPushHistory;
-            _syncSource = source;
-            _syncFileName = fileName;
+            _syncSource = sourceUrl;
+            _syncFileName = fileUrl;
             SetLoading(true);
             Sync();
         }
@@ -80,7 +80,7 @@ namespace jp.ootr.ImageTab
 
             SetLoading(true);
             controller.CcReleaseTexture(_localSource, _localFileName);
-            controller.UnloadFilesFromUrl(this, _localSource);
+            controller.UnloadSource(this, _localSource);
             _localSource = _syncSource;
             _localFileName = _syncFileName;
             _localFileName.ParseFileName(out var type, out var options);
@@ -93,10 +93,10 @@ namespace jp.ootr.ImageTab
             inputField.SetUrl(VRCUrl.Empty);
         }
 
-        public override void OnFilesLoadSuccess(string source, string[] fileNames)
+        public override void OnSourceLoadSuccess(string sourceUrl, string[] fileUrls)
         {
-            if (source != _localSource) return;
-            base.OnFilesLoadSuccess(source, fileNames);
+            if (sourceUrl != _localSource) return;
+            base.OnSourceLoadSuccess(sourceUrl, fileUrls);
             if (_shouldPushHistory)
             {
                 PushHistory(_localSource, _localFileName);
@@ -123,9 +123,9 @@ namespace jp.ootr.ImageTab
             device.LoadImage(_localSource, _localFileName);
         }
 
-        public override void OnFilesLoadFailed(LoadError error)
+        public override void OnSourceLoadFailed(LoadError error)
         {
-            base.OnFilesLoadFailed(error);
+            base.OnSourceLoadFailed(error);
             SetLoading(false);
         }
 
