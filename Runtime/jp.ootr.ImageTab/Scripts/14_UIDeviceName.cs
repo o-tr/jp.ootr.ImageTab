@@ -1,16 +1,16 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace jp.ootr.ImageTab
 {
     public class UIDeviceName : UIFooter
     {
-        [SerializeField] private InputField uIDeviceNameInputField;
+        [SerializeField] private TextMeshProUGUI UIDeviceNameText;
 
         public override void InitController()
         {
             base.InitController();
-            uIDeviceNameInputField.text = deviceName;
+            UIDeviceNameText.text= $"<size=50%>DeviceName</size>\n{deviceName}";
         }
     }
 }

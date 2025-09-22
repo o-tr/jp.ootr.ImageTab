@@ -22,9 +22,9 @@ namespace jp.ootr.ImageTab.Editor
         private SerializedProperty _arWatchInterval;
         private SerializedProperty _uiBookmarkNames;
         private SerializedProperty _uiBookmarkUrls;
-        private SerializedProperty _uiHistoryDisabled;
+        private SerializedProperty _uIHistoryDisabled;
+        private SerializedProperty _pickupColliderEnabled;
         private SerializedProperty _isObjectSyncEnabled;
-        private SerializedProperty _isPickupEnabled;
         
         private List<int> _bookmarkIndex = new List<int>(); 
         
@@ -37,12 +37,14 @@ namespace jp.ootr.ImageTab.Editor
         {
             base.OnEnable();
             Root.styleSheets.Add(imageTabStyle);
-            _arWatchInterval = serializedObject.FindProperty("arWatchInterval");
-            _uiBookmarkNames = serializedObject.FindProperty("uIBookmarkNames");
-            _uiBookmarkUrls = serializedObject.FindProperty("uIBookmarkUrls");
-            _uiHistoryDisabled = serializedObject.FindProperty("uIHistoryDisabled");
-            _isObjectSyncEnabled = serializedObject.FindProperty("isObjectSyncEnabled");
-            _isPickupEnabled = serializedObject.FindProperty("isPickupEnabled");
+            var script = (ImageTab)target;
+            _arWatchInterval = serializedObject.FindProperty(nameof(script.arWatchInterval));
+            _uiBookmarkNames = serializedObject.FindProperty(nameof(script.uIBookmarkNames));
+            _uiBookmarkUrls = serializedObject.FindProperty(nameof(script.uIBookmarkUrls));
+            _uIHistoryDisabled = serializedObject.FindProperty(nameof(script.uIHistoryDisabled));
+            _isObjectSyncEnabled = serializedObject.FindProperty(nameof(script.isObjectSyncEnabled));
+            var pickupColliderSo = new SerializedObject(((ImageTab)target).pickupCollider);
+            _pickupColliderEnabled = pickupColliderSo.FindProperty("m_Enabled");
             
             _bookmarkIndex.Clear();
             for (int i = 0; i < _uiBookmarkUrls.arraySize; i++)
@@ -68,7 +70,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var field = new PropertyField()
             {
-                bindingPath = "arWatchInterval",
+                bindingPath = _arWatchInterval.propertyPath,
                 label = "Rotation Check Interval",
             };
             return field;
@@ -78,7 +80,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var field = new Toggle("Disable History")
             {
-                bindingPath = "uIHistoryDisabled"
+                bindingPath = _uIHistoryDisabled.propertyPath
             };
             return field;
         }
@@ -87,7 +89,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var field = new Toggle("Enable Object Sync")
             {
-                bindingPath = "isObjectSyncEnabled"
+                bindingPath = _isObjectSyncEnabled.propertyPath
             };
             field.RegisterValueChangedCallback(evt =>
             {
@@ -100,7 +102,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var field = new Toggle("Enable Pickup")
             {
-                bindingPath = "isPickupEnabled"
+                bindingPath = _pickupColliderEnabled.propertyPath
             };
             field.RegisterValueChangedCallback(evt =>
             {
@@ -255,6 +257,7 @@ namespace jp.ootr.ImageTab.Editor
             so.Update();
             var urls = so.FindProperty("uIToStoreUrls");
             urls.arraySize = script.uIBookmarkUrls.Length;
+            Debug.Log($"uIToStoreUrls size: {urls.arraySize}");
             for (int i = 0; i < script.uIBookmarkUrls.Length; i++)
             {
                 var vrcUrl = urls.GetArrayElementAtIndex(i);

@@ -26,7 +26,7 @@ namespace jp.ootr.ImageTab
             foreach (var device in devices)
             {
                 if (!Utilities.IsValid(device)) continue;
-                if (!device.IsCastableDevice()) return;
+                if (!device.IsCastableDevice()) continue;
                 if (device.GetDeviceUuid() == deviceUuid) continue;
                 CastImageToDevice(device);
             }
@@ -37,7 +37,7 @@ namespace jp.ootr.ImageTab
             foreach (var device in devices)
             {
                 if (!Utilities.IsValid(device)) continue;
-                if (!device.IsCastableDevice()) return;
+                if (!device.IsCastableDevice()) continue;
                 if (device.GetDeviceUuid() == deviceUuid) continue;
                 device.ShowScreenName();
             }

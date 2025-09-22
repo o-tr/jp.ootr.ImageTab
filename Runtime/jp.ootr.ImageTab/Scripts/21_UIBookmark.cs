@@ -65,7 +65,8 @@ namespace jp.ootr.ImageTab
             if (!_uiBookmarkButtonToggles.HasChecked(out var index)) return;
             var url = uIBookmarkUrls[index];
             if (!Utilities.IsValid(url)) return;
-            LoadImage(url, url, true);
+            var fileUrl = $"{controller.PROTOCOL_IMAGE}://{url.Substring(8)}";
+            LoadImage(url, fileUrl, true);
         }
     }
 }

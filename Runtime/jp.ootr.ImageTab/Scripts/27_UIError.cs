@@ -1,4 +1,5 @@
 ﻿using jp.ootr.ImageDeviceController;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,8 @@ namespace jp.ootr.ImageTab
 {
     public class UIError : UIAnimatorHandler
     {
-        [SerializeField] private InputField uIErrorTitle;
-        [SerializeField] private InputField uIErrorMessage;
+        [SerializeField] private TextMeshProUGUI uIErrorTitle;
+        [SerializeField] private TextMeshProUGUI uIErrorMessage;
 
         public override void OnSourceLoadFailed(LoadError error)
         {
@@ -18,7 +19,7 @@ namespace jp.ootr.ImageTab
         protected void ShowError(LoadError error)
         {
             error.ParseMessage(out var title, out var message);
-            uIErrorTitle.text = title;
+            uIErrorTitle.text =$"<color=#ff0000><sprite name=\"o_alert\" color=\"#ff0000\">{title}</color>";
             uIErrorMessage.text = message;
             OpenErrorModal();
         }

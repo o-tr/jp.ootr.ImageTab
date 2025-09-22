@@ -22,7 +22,10 @@ namespace jp.ootr.ImageTab
         [SerializeField] public bool isObjectSyncEnabled = true;
         [SerializeField] public bool isPickupEnabled = true;
         
-        private readonly int _animatorIsLoading = Animator.StringToHash("IsLoading");
+        private bool _isInitialized;
+        
+        private int _animatorIsLoading = Animator.StringToHash("IsLoading");
+        private int _animatorShowSplash = Animator.StringToHash("ShowSplashScreen");
 
         private bool _isLoading;
         private string _localFileName = "";
@@ -43,6 +46,13 @@ namespace jp.ootr.ImageTab
             return "ImageTab";
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            _animatorIsLoading = Animator.StringToHash("IsLoading");
+            _animatorShowSplash = Animator.StringToHash("ShowSplashScreen");
+        }
+
         public void OnUrlEndEdit()
         {
             var url = inputField.GetUrl();
@@ -56,8 +66,9 @@ namespace jp.ootr.ImageTab
             }
 
             controller.UsAddUrl(url);
+            var fileUrl = $"{controller.PROTOCOL_IMAGE}://{url.ToString().Substring(8)}";
 
-            LoadImage(urlStr, urlStr, true);
+            LoadImage(urlStr, fileUrl, true);
         }
 
         public override void LoadImage(string sourceUrl, string fileUrl, bool shouldPushHistory = false)
@@ -103,12 +114,24 @@ namespace jp.ootr.ImageTab
                 _shouldPushHistory = false;
             }
 
+            controller.LoadFile(this, _localSource, _localFileName, 100);
+        }
+
+        public override void OnFileLoadSuccess(string source, string fileUrl, string channel)
+        {
+            base.OnFileLoadSuccess(source, fileUrl, channel);
             inputField.SetUrl(controller.UsGetUrl(_localSource));
             var texture = controller.CcGetTexture(_localSource, _localFileName);
-            if (!texture) return;
-            image.texture = texture;
-            aspectRatioFitter.aspectRatio = (float)texture.width / texture.height;
+            if (texture != null)
+            {
+                image.texture = texture;
+                aspectRatioFitter.aspectRatio = (float)texture.width / texture.height;
+            }
+
             SetLoading(false);
+            if (_isInitialized) return;
+            _isInitialized = true;
+            animator.SetBool(_animatorShowSplash, false);
         }
 
         protected virtual void SetLoading(bool loading)
@@ -126,6 +149,12 @@ namespace jp.ootr.ImageTab
         public override void OnSourceLoadFailed(LoadError error)
         {
             base.OnSourceLoadFailed(error);
+            SetLoading(false);
+        }
+
+        public override void OnFileLoadError(string source, string fileUrl, string channel, LoadError error)
+        {
+            base.OnFileLoadError(source, fileUrl, channel, error);
             SetLoading(false);
         }
 

@@ -8,7 +8,7 @@ namespace jp.ootr.ImageTab
     public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
-        [SerializeField] private bool uIHistoryDisabled;
+        [SerializeField] internal bool uIHistoryDisabled;
 
         private readonly string[] _uiHistoryPrefix = { "UIHistory" };
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];
