@@ -5,7 +5,8 @@
     "VRC.Udon",
     "VRC.Udon.Serialization.OdinSerializer",
     "jp.ootr.common",
-    "jp.ootr.ImageDeviceController"
+    "jp.ootr.ImageDeviceController",
+    "Unity.TextMeshPro"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
