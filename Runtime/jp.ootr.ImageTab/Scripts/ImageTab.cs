@@ -16,14 +16,14 @@ namespace jp.ootr.ImageTab
 
         [SerializeField] private RawImage image;
         [SerializeField] private AspectRatioFitter aspectRatioFitter;
-        
+
         [SerializeField] public GameObject rootGameObject;
         [SerializeField] public BoxCollider pickupCollider;
         [SerializeField] public bool isObjectSyncEnabled = true;
         [SerializeField] public bool isPickupEnabled = true;
-        
+
         private bool _isInitialized;
-        
+
         private int _animatorIsLoading = Animator.StringToHash("IsLoading");
         private int _animatorShowSplash = Animator.StringToHash("ShowSplashScreen");
 
@@ -95,7 +95,7 @@ namespace jp.ootr.ImageTab
             _localSource = _syncSource;
             _localFileName = _syncFileName;
             _localFileName.ParseFileName(out var type, out var options);
-            
+
             LLIFetchImage(_localSource, type, options);
         }
 

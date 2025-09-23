@@ -24,12 +24,12 @@ namespace jp.ootr.ImageTab
             StoreBookmarkUrls();
             UpdateBookmark();
         }
-        
+
         protected virtual void StoreBookmarkUrls()
         {
             foreach (var url in uIToStoreUrls) controller.UsAddUrlLocal(url);
         }
-        
+
         protected virtual void UpdateBookmark()
         {
             if (uIBookmarkUrls.Length != uIBookmarkNames.Length)
@@ -55,7 +55,7 @@ namespace jp.ootr.ImageTab
                 _uiBookmarkButtonToggles[i] = toggle;
             }
 
-            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(0,0,true);
+            uIOriginalBookmarkButton.transform.parent.ToListChildrenVertical(0, 0, true);
 
             SendCustomEventDelayedFrames(nameof(UpdateFooter), 0, EventTiming.LateUpdate);
         }

@@ -26,7 +26,7 @@ namespace jp.ootr.ImageTab
         public virtual void UpdateDeviceList()
         {
             uIDeviceListContainer.ClearChildren();
-            
+
             DeviceListButtonToggles = new Toggle[devices.Length];
             DeviceListButtonSliders = new Slider[devices.Length];
             for (var i = 0; i < devices.Length; i++)
@@ -51,7 +51,7 @@ namespace jp.ootr.ImageTab
                 button.name = device.deviceUuid;
             }
 
-            uIDeviceListContainer.ToListChildrenVertical(0,0,true);
+            uIDeviceListContainer.ToListChildrenVertical(0, 0, true);
         }
     }
 }
