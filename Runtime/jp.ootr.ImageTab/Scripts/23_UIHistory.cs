@@ -8,13 +8,13 @@ namespace jp.ootr.ImageTab
     public class UIHistory : UIBookmark
     {
         [SerializeField] private GameObject uIOriginalHistoryButton;
-        [SerializeField] private bool uIHistoryDisabled;
+        [SerializeField] internal bool uIHistoryDisabled;
 
         private readonly string[] _uiHistoryPrefix = { "UIHistory" };
         private InputField[] _uiHistoryButtonInputFields = new InputField[0];
         private GameObject[] _uiHistoryButtons = new GameObject[0];
         private Toggle[] _uiHistoryButtonToggles = new Toggle[0];
-        
+
         private readonly int _animatorIsHistoryDisabled = Animator.StringToHash("IsHistoryDisabled");
 
         public override void InitController()
@@ -62,7 +62,7 @@ namespace jp.ootr.ImageTab
                 if (!_uiHistoryButtonToggles[i].isOn) _uiHistoryButtonToggles[i].isOn = false;
             }
 
-            uIOriginalHistoryButton.transform.parent.ToListChildrenVertical(0,0,true,true);
+            uIOriginalHistoryButton.transform.parent.ToListChildrenVertical(0, 0, true, true);
         }
 
         public virtual void OnHistoryListClicked()

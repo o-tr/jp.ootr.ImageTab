@@ -44,6 +44,11 @@ namespace jp.ootr.ImageTab
             animator.SetInteger(_animatorLibraryModalState, 4);
         }
 
+        public virtual void OpenBookmarkModal()
+        {
+            animator.SetInteger(_animatorLibraryModalState, 5);
+        }
+
         public virtual void CloseSettingsModal()
         {
             animator.SetInteger(_animatorSettingsModalState, 0);
@@ -52,16 +57,6 @@ namespace jp.ootr.ImageTab
         public virtual void OpenSettingsModal()
         {
             animator.SetInteger(_animatorSettingsModalState, 1);
-        }
-
-        public virtual void OpenSettingsModalAboutPage()
-        {
-            animator.SetInteger(_animatorSettingsModalState, 2);
-        }
-
-        public virtual void OpenSettingsModalLicensePage()
-        {
-            animator.SetInteger(_animatorSettingsModalState, 3);
         }
 
         public virtual void CloseErrorModal()

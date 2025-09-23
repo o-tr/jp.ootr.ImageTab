@@ -1,5 +1,6 @@
 ﻿using jp.ootr.common;
 using UnityEngine;
+using VRC.SDKBase;
 
 namespace jp.ootr.ImageTab
 {
@@ -31,7 +32,7 @@ namespace jp.ootr.ImageTab
             var castableDeviceCount = 0;
             foreach (var device in devices)
             {
-                if (device == null || device.deviceUuid == deviceUuid) continue;
+                if (!Utilities.IsValid(device) || device.deviceUuid == deviceUuid) continue;
                 if (device.IsCastableDevice()) castableDeviceCount++;
             }
 
