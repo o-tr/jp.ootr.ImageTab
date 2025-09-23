@@ -10,7 +10,7 @@ namespace jp.ootr.ImageTab
         public override void InitController()
         {
             base.InitController();
-            UIDeviceNameText.text= $"<size=50%>DeviceName</size>\n{deviceName}";
+            UIDeviceNameText.text = $"<size=50%>DeviceName</size>\n{deviceName}";
         }
     }
 }
