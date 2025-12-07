@@ -252,6 +252,25 @@ namespace jp.ootr.ImageTab
         {
             ConsoleError($"[OnSourceLoadFailed] source load failed: {error}, current source: {_localSource}", _imageTabPrefixes);
             base.OnSourceLoadFailed(error);
+            
+            // Clean up previous image references
+            if (!_previousSource.IsNullOrEmpty() && !_previousFileName.IsNullOrEmpty())
+            {
+                ConsoleInfo($"[OnSourceLoadFailed] releasing previous image: {_previousSource} / {_previousFileName}", _imageTabPrefixes);
+                controller.CcReleaseTexture(_previousSource, _previousFileName);
+                controller.UnloadSource(this, _previousSource);
+                _previousSource = "";
+                _previousFileName = "";
+            }
+            
+            // Process queued URL if present
+            if (!_queuedSourceUrl.IsNullOrEmpty() && !_queuedFileName.IsNullOrEmpty())
+            {
+                ConsoleInfo($"[OnSourceLoadFailed] queued URL found, loading: {_queuedSourceUrl} / {_queuedFileName}", _imageTabPrefixes);
+                LoadQueuedImage();
+                return;
+            }
+            
             SetLoading(false);
         }
 
@@ -277,7 +296,17 @@ namespace jp.ootr.ImageTab
 
             ConsoleError($"[OnFileLoadError] file load error: {source} / {fileUrl}, channel: {channel}, error: {error}", _imageTabPrefixes);
             base.OnFileLoadError(source, fileUrl, channel, error);
-
+            
+            // Clean up previous image references
+            if (!_previousSource.IsNullOrEmpty() && !_previousFileName.IsNullOrEmpty())
+            {
+                ConsoleInfo($"[OnFileLoadError] releasing previous image: {_previousSource} / {_previousFileName}", _imageTabPrefixes);
+                controller.CcReleaseTexture(_previousSource, _previousFileName);
+                controller.UnloadSource(this, _previousSource);
+                _previousSource = "";
+                _previousFileName = "";
+            }
+            
             // バッファリングされたURLがある場合は、それを読み込む
             if (!_queuedSourceUrl.IsNullOrEmpty() && !_queuedFileName.IsNullOrEmpty())
             {
