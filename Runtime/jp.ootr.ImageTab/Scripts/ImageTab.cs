@@ -150,7 +150,7 @@ namespace jp.ootr.ImageTab
                 base.OnSourceLoadSuccess(sourceUrl, fileUrls);
                 return;
             }
-            
+
             // 一致するソースが見つかった場合、_localSource と _localFileName を更新
             if (sourceUrl == _syncSource)
             {
@@ -158,7 +158,7 @@ namespace jp.ootr.ImageTab
                 _localFileName = _syncFileName;
                 ConsoleDebug($"[OnSourceLoadSuccess] updated _localSource to match _syncSource: {_localSource} / {_localFileName}", _imageTabPrefixes);
             }
-            
+
             ConsoleInfo($"[OnSourceLoadSuccess] source loaded: {sourceUrl}, files: {string.Join(", ", fileUrls)}", _imageTabPrefixes);
             base.OnSourceLoadSuccess(sourceUrl, fileUrls);
             if (_shouldPushHistory)
@@ -176,13 +176,13 @@ namespace jp.ootr.ImageTab
             // _localSource または _syncSource のいずれかと一致するか確認
             var isLocalMatch = source == _localSource && fileUrl == _localFileName;
             var isSyncMatch = source == _syncSource && fileUrl == _syncFileName;
-            
+
             if (!isLocalMatch && !isSyncMatch)
             {
                 ConsoleDebug($"[OnFileLoadSuccess] source/file mismatch: {source}/{fileUrl} != ({_localSource}/{_localFileName} or {_syncSource}/{_syncFileName}), ignoring", _imageTabPrefixes);
                 return;
             }
-            
+
             // 一致するソースが見つかった場合、_localSource と _localFileName を更新
             if (isSyncMatch && !isLocalMatch)
             {
@@ -190,7 +190,7 @@ namespace jp.ootr.ImageTab
                 _localFileName = _syncFileName;
                 ConsoleDebug($"[OnFileLoadSuccess] updated _localSource to match _syncSource: {_localSource} / {_localFileName}", _imageTabPrefixes);
             }
-            
+
             ConsoleInfo($"[OnFileLoadSuccess] file loaded: {source} / {fileUrl}, channel: {channel}", _imageTabPrefixes);
             base.OnFileLoadSuccess(source, fileUrl, channel);
             inputField.SetUrl(controller.UsGetUrl(_localSource));
@@ -260,13 +260,13 @@ namespace jp.ootr.ImageTab
             // _localSource または _syncSource のいずれかと一致するか確認
             var isLocalMatch = source == _localSource && fileUrl == _localFileName;
             var isSyncMatch = source == _syncSource && fileUrl == _syncFileName;
-            
+
             if (!isLocalMatch && !isSyncMatch)
             {
                 ConsoleDebug($"[OnFileLoadError] source/file mismatch: {source}/{fileUrl} != ({_localSource}/{_localFileName} or {_syncSource}/{_syncFileName}), ignoring", _imageTabPrefixes);
                 return;
             }
-            
+
             // 一致するソースが見つかった場合、_localSource と _localFileName を更新
             if (isSyncMatch && !isLocalMatch)
             {
@@ -274,10 +274,10 @@ namespace jp.ootr.ImageTab
                 _localFileName = _syncFileName;
                 ConsoleDebug($"[OnFileLoadError] updated _localSource to match _syncSource: {_localSource} / {_localFileName}", _imageTabPrefixes);
             }
-            
+
             ConsoleError($"[OnFileLoadError] file load error: {source} / {fileUrl}, channel: {channel}, error: {error}", _imageTabPrefixes);
             base.OnFileLoadError(source, fileUrl, channel, error);
-            
+
             // バッファリングされたURLがある場合は、それを読み込む
             if (!_queuedSourceUrl.IsNullOrEmpty() && !_queuedFileName.IsNullOrEmpty())
             {
@@ -285,7 +285,7 @@ namespace jp.ootr.ImageTab
                 LoadQueuedImage();
                 return;
             }
-            
+
             SetLoading(false);
         }
 
