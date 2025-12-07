@@ -1,4 +1,4 @@
-﻿using jp.ootr.common;
+using jp.ootr.common;
 using jp.ootr.ImageDeviceController;
 using jp.ootr.ImageDeviceController.CommonDevice;
 using UdonSharp;
@@ -119,6 +119,7 @@ namespace jp.ootr.ImageTab
 
         public override void OnFileLoadSuccess(string source, string fileUrl, string channel)
         {
+            if (source != _localSource || fileUrl != _localFileName) return;
             base.OnFileLoadSuccess(source, fileUrl, channel);
             inputField.SetUrl(controller.UsGetUrl(_localSource));
             var texture = controller.CcGetTexture(_localSource, _localFileName);
@@ -154,6 +155,7 @@ namespace jp.ootr.ImageTab
 
         public override void OnFileLoadError(string source, string fileUrl, string channel, LoadError error)
         {
+            if (source != _localSource || fileUrl != _localFileName) return;
             base.OnFileLoadError(source, fileUrl, channel, error);
             SetLoading(false);
         }

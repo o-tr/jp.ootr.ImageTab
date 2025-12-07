@@ -5,7 +5,7 @@ using VRC.Udon.Common.Enums;
 
 namespace jp.ootr.ImageTab
 {
-    public class AutoRotateDevice : CommonDevice
+    public class AutoRotateDevice : UIAnimatorHandler
     {
         private const float UIAnimationDuration = 0.25f;
 

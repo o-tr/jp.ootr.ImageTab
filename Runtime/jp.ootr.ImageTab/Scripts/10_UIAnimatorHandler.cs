@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using jp.ootr.ImageDeviceController.CommonDevice;
+using UnityEngine;
 
 namespace jp.ootr.ImageTab
 {
-    public class UIAnimatorHandler : LogicHistory
+    public class UIAnimatorHandler : CommonDevice
     {
         private readonly int _animatorCastModalState = Animator.StringToHash("CastModalState");
         private readonly int _animatorErrorModalState = Animator.StringToHash("ErrorModalState");
