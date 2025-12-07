@@ -106,6 +106,13 @@ namespace jp.ootr.ImageTab
             }
 
             SetLoading(true);
+            // 既に前の画像が保存されている場合は、先に解放する（連続呼び出し対策）
+            if (!_previousSource.IsNullOrEmpty() && !_previousFileName.IsNullOrEmpty())
+            {
+                ConsoleInfo($"[_OnDeserialization] releasing previous image before overwriting: {_previousSource} / {_previousFileName}", _imageTabPrefixes);
+                controller.CcReleaseTexture(_previousSource, _previousFileName);
+                controller.UnloadSource(this, _previousSource);
+            }
             // 古い画像の情報を保存（新しい画像の読み込み成功後に解放するため）
             ConsoleDebug($"[_OnDeserialization] saving previous image: {_localSource} / {_localFileName}", _imageTabPrefixes);
             _previousSource = _localSource;
