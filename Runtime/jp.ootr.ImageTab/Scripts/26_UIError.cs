@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace jp.ootr.ImageTab
 {
-    public class UIError : UIAnimatorHandler
+    public class UIError : LogicHistory
     {
         [SerializeField] private TextMeshProUGUI uIErrorTitle;
         [SerializeField] private TextMeshProUGUI uIErrorMessage;

@@ -71,6 +71,7 @@ namespace jp.ootr.ImageTab
             var source = GetHistoryByIndex(index);
             if (source.Length == 0) return;
             LoadImage(source[0], source[1]);
+            CloseLibraryModal();
         }
 
         public virtual void RemoveHistory()

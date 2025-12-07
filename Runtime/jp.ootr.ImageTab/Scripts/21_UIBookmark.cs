@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon.Common.Enums;
@@ -67,6 +67,7 @@ namespace jp.ootr.ImageTab
             if (!Utilities.IsValid(url)) return;
             var fileUrl = $"{controller.PROTOCOL_IMAGE}://{url.Substring(8)}";
             LoadImage(url, fileUrl, true);
+            CloseLibraryModal();
         }
     }
 }
