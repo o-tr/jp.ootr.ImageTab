@@ -5471,7 +5471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllowCollisionOwnershipTransfer: 1
-  ForceKinematicOnRemote: 0
 --- !u!114 &1314218738445618537
 MonoBehaviour:
   m_ObjectHideFlags: 0
