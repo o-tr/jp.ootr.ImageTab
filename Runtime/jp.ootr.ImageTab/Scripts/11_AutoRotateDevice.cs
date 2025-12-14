@@ -40,13 +40,8 @@ namespace jp.ootr.ImageTab
             {
                 _arDirection = initialDirection;
                 RequestSerialization();
+                ApplyDirectionToAnimator();
             }
-            else
-            {
-                _arDirection = initialDirection;
-            }
-
-            ApplyDirectionToAnimator();
         }
 
         public override void OnPickup()
