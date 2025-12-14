@@ -25,9 +25,10 @@ namespace jp.ootr.ImageTab.Editor
         private SerializedProperty _uIHistoryDisabled;
         private SerializedProperty _pickupColliderEnabled;
         private SerializedProperty _isObjectSyncEnabled;
-        
-        private List<int> _bookmarkIndex = new List<int>(); 
-        
+        private SerializedProperty _initialDirection;
+
+        private List<int> _bookmarkIndex = new List<int>();
+
         protected override string GetScriptName()
         {
             return "ImageTab";
@@ -43,9 +44,10 @@ namespace jp.ootr.ImageTab.Editor
             _uiBookmarkUrls = serializedObject.FindProperty(nameof(script.uIBookmarkUrls));
             _uIHistoryDisabled = serializedObject.FindProperty(nameof(script.uIHistoryDisabled));
             _isObjectSyncEnabled = serializedObject.FindProperty(nameof(script.isObjectSyncEnabled));
+            _initialDirection = serializedObject.FindProperty(nameof(script.initialDirection));
             var pickupColliderSo = new SerializedObject(((ImageTab)target).pickupCollider);
             _pickupColliderEnabled = pickupColliderSo.FindProperty("m_Enabled");
-            
+
             _bookmarkIndex.Clear();
             for (int i = 0; i < _uiBookmarkUrls.arraySize; i++)
             {
@@ -57,6 +59,7 @@ namespace jp.ootr.ImageTab.Editor
         {
             var container = new VisualElement();
             container.AddToClassList("container");
+            container.Add(GetInitialDirection());
             container.Add(GetArWatchInterval());
             container.Add(GetDisableHistory());
             container.Add(GetObjectSyncEnabled());
@@ -64,6 +67,16 @@ namespace jp.ootr.ImageTab.Editor
             container.Add(GetBookmark());
 
             return container;
+        }
+
+        private VisualElement GetInitialDirection()
+        {
+            var field = new PropertyField()
+            {
+                bindingPath = _initialDirection.propertyPath,
+                label = "Initial Direction"
+            };
+            return field;
         }
 
         private VisualElement GetArWatchInterval()
@@ -75,7 +88,7 @@ namespace jp.ootr.ImageTab.Editor
             };
             return field;
         }
-        
+
         private VisualElement GetDisableHistory()
         {
             var field = new Toggle("Disable History")
@@ -84,30 +97,24 @@ namespace jp.ootr.ImageTab.Editor
             };
             return field;
         }
-        
+
         private VisualElement GetObjectSyncEnabled()
         {
             var field = new Toggle("Enable Object Sync")
             {
                 bindingPath = _isObjectSyncEnabled.propertyPath
             };
-            field.RegisterValueChangedCallback(evt =>
-            {
-                ImageTabUtils.UpdateObjectSync((ImageTab)target);
-            });
+            field.RegisterValueChangedCallback(evt => { ImageTabUtils.UpdateObjectSync((ImageTab)target); });
             return field;
         }
-        
+
         private VisualElement GetPickupEnabled()
         {
             var field = new Toggle("Enable Pickup")
             {
                 bindingPath = _pickupColliderEnabled.propertyPath
             };
-            field.RegisterValueChangedCallback(evt =>
-            {
-                ImageTabUtils.UpdatePickup((ImageTab)target);
-            });
+            field.RegisterValueChangedCallback(evt => { ImageTabUtils.UpdatePickup((ImageTab)target); });
             return field;
         }
 
@@ -141,7 +148,7 @@ namespace jp.ootr.ImageTab.Editor
                 _uiBookmarkNames.arraySize = newSize;
                 _uiBookmarkUrls.arraySize = newSize;
                 serializedObject.ApplyModifiedProperties();
-                _bookmarkIndex[index.First()] = newSize-1;
+                _bookmarkIndex[index.First()] = newSize - 1;
             };
             list.itemsRemoved += (index) =>
             {
@@ -151,16 +158,17 @@ namespace jp.ootr.ImageTab.Editor
                 _uiBookmarkUrls.DeleteArrayElementAtIndex(index.First());
                 serializedObject.ApplyModifiedProperties();
             };
-            
+
             list.itemIndexChanged += (oldIndex, newIndex) =>
             {
-                (_bookmarkIndex[oldIndex], _bookmarkIndex[newIndex]) = (_bookmarkIndex[newIndex], _bookmarkIndex[oldIndex]);
+                (_bookmarkIndex[oldIndex], _bookmarkIndex[newIndex]) =
+                    (_bookmarkIndex[newIndex], _bookmarkIndex[oldIndex]);
                 serializedObject.Update();
                 _uiBookmarkNames.MoveArrayElement(oldIndex, newIndex);
                 _uiBookmarkUrls.MoveArrayElement(oldIndex, newIndex);
                 serializedObject.ApplyModifiedProperties();
             };
-            
+
             list.makeItem = () => new VisualElement();
             list.bindItem = (e, i) =>
             {
@@ -185,11 +193,11 @@ namespace jp.ootr.ImageTab.Editor
                 row.Add(urlField);
                 e.Add(row);
             };
-            
+
             return container;
         }
     }
-    
+
     [InitializeOnLoad]
     public class PlayModeNotifier
     {
@@ -209,7 +217,7 @@ namespace jp.ootr.ImageTab.Editor
             }
         }
     }
-    
+
     public class SetObjectReferences : UnityEditor.Editor, IVRCSDKBuildRequestedCallback
     {
         public int callbackOrder => 12;
@@ -242,7 +250,7 @@ namespace jp.ootr.ImageTab.Editor
                 if (currentSyncObj != null) Object.DestroyImmediate(currentSyncObj);
             }
         }
-        
+
         public static void UpdatePickup(ImageTab script)
         {
             var so = new SerializedObject(script.pickupCollider);
@@ -263,6 +271,7 @@ namespace jp.ootr.ImageTab.Editor
                 var vrcUrl = urls.GetArrayElementAtIndex(i);
                 vrcUrl.FindPropertyRelative("url").stringValue = script.uIBookmarkUrls[i];
             }
+
             so.ApplyModifiedProperties();
         }
     }
