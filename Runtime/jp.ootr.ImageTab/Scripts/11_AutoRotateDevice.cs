@@ -10,11 +10,11 @@ namespace jp.ootr.ImageTab
     {
         private const float UIAnimationDuration = 0.25f;
 
-        [SerializeField] [Range(0.01f, 1f)] public float arWatchInterval = 0.2f;
+        [SerializeField][Range(0.01f, 1f)] public float arWatchInterval = 0.2f;
 
-        [Header("初期設定")] [SerializeField] internal TabletDirection initialDirection = TabletDirection.Bottom;
+        [Header("初期設定")][SerializeField] internal TabletDirection initialDirection = TabletDirection.Bottom;
 
-        [Header("回転検知用")] [SerializeField] private Transform arAnchorTop;
+        [Header("回転検知用")][SerializeField] private Transform arAnchorTop;
 
         [SerializeField] private Transform arAnchorBottom;
         [SerializeField] private Transform arAnchorLeft;
@@ -28,7 +28,7 @@ namespace jp.ootr.ImageTab
         [UdonSynced] private TabletDirection _arDirection = TabletDirection.Bottom;
         private bool _arIsHolding;
 
-        [Header("同期用")] [UdonSynced] private bool _arIsLockRotate;
+        [Header("同期用")][UdonSynced] private bool _arIsLockRotate;
 
         private bool _arIsLockRotateLocal;
         private TabletDirection _arLocalDirection = 0;
