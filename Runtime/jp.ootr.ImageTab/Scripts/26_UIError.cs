@@ -89,12 +89,12 @@ namespace jp.ootr.ImageTab
             if (width >= height)
             {
                 newWidth = 2048;
-                newHeight = (int)(2048 / ratio);
+                newHeight = Mathf.Max(1, (int)(2048 / ratio));
             }
             else
             {
                 newHeight = 2048;
-                newWidth = (int)(2048 * ratio);
+                newWidth = Mathf.Max(1, (int)(2048 * ratio));
             }
 
             url = Regex.Replace(url, @"(width=)\d+", $"${{1}}{newWidth}");
