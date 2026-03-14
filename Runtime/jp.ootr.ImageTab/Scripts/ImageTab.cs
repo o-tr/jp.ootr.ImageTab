@@ -255,6 +255,8 @@ namespace jp.ootr.ImageTab
             device.LoadImage(_localSource, _localFileName);
         }
 
+        protected override string GetCurrentSourceUrl() => _localSource;
+
         public override void OnSourceLoadFailed(LoadError error)
         {
             ConsoleError($"[OnSourceLoadFailed] source load failed: {error}, current source: {_localSource}", _imageTabPrefixes);
