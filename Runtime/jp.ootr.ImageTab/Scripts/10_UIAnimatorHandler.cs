@@ -69,5 +69,10 @@ namespace jp.ootr.ImageTab
         {
             animator.SetInteger(_animatorErrorModalState, 1);
         }
+
+        public virtual void OpenDimensionErrorModal()
+        {
+            animator.SetInteger(_animatorErrorModalState, 2);
+        }
     }
 }

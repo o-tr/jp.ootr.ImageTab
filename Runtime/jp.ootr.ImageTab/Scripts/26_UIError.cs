@@ -1,7 +1,6 @@
-﻿using jp.ootr.ImageDeviceController;
+using jp.ootr.ImageDeviceController;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace jp.ootr.ImageTab
 {
@@ -9,10 +8,21 @@ namespace jp.ootr.ImageTab
     {
         [SerializeField] private TextMeshProUGUI uIErrorTitle;
         [SerializeField] private TextMeshProUGUI uIErrorMessage;
+        [SerializeField] private string proxyBaseUrl;
+        [SerializeField] private TextMeshProUGUI uIDimensionErrorTitle;
+        [SerializeField] private TextMeshProUGUI uIDimensionErrorMessage;
+        [SerializeField] private TMP_InputField uIDimensionErrorInput;
+
+        protected virtual string GetCurrentSourceUrl() => "";
 
         public override void OnSourceLoadFailed(LoadError error)
         {
             base.OnSourceLoadFailed(error);
+            if (error == LoadError.MaximumDimensionExceeded)
+            {
+                ShowDimensionError(GetCurrentSourceUrl());
+                return;
+            }
             ShowError(error);
         }
 
@@ -22,6 +32,15 @@ namespace jp.ootr.ImageTab
             uIErrorTitle.text = $"<color=#ff0000><sprite name=\"o_alert\" color=\"#ff0000\">{title}</color>";
             uIErrorMessage.text = message;
             OpenErrorModal();
+        }
+
+        protected void ShowDimensionError(string sourceUrl)
+        {
+            LoadError.MaximumDimensionExceeded.ParseMessage(out var title, out var message);
+            uIDimensionErrorTitle.text = title;
+            uIDimensionErrorMessage.text = message;
+            uIDimensionErrorInput.text = $"{proxyBaseUrl}{sourceUrl}";
+            OpenDimensionErrorModal();
         }
     }
 }
