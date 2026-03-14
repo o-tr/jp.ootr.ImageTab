@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using jp.ootr.ImageDeviceController;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace jp.ootr.ImageTab
         [SerializeField] private TextMeshProUGUI uIDimensionErrorTitle;
         [SerializeField] private TextMeshProUGUI uIDimensionErrorMessage;
         [SerializeField] private TMP_InputField uIDimensionErrorInput;
+        [SerializeField] private GameObject uiDimensionProxyTosInput;
 
         protected virtual string GetCurrentSourceUrl() => "";
 
@@ -36,11 +38,79 @@ namespace jp.ootr.ImageTab
 
         protected void ShowDimensionError(string sourceUrl)
         {
-            LoadError.MaximumDimensionExceeded.ParseMessage(out var title, out var message);
-            uIDimensionErrorTitle.text = title;
-            uIDimensionErrorMessage.text = message;
-            uIDimensionErrorInput.text = $"{proxyBaseUrl}{sourceUrl}";
+            uIDimensionErrorTitle.text = __("error.dimension.title");
+            if (TryGetResizedUrl(sourceUrl, out var resizedUrl))
+            {
+                uIDimensionErrorMessage.text = __("error.dimension.cdn.message");
+                uIDimensionErrorInput.text = resizedUrl;
+                uiDimensionProxyTosInput.SetActive(false);
+            }
+            else
+            {
+                uIDimensionErrorMessage.text = __("error.dimension.proxy.message");
+                uIDimensionErrorInput.text = $"{proxyBaseUrl}{sourceUrl}";
+                uiDimensionProxyTosInput.SetActive(true);
+            }
             OpenDimensionErrorModal();
+        }
+
+        private bool TryGetResizedUrl(string sourceUrl, out string resizedUrl)
+        {
+            resizedUrl = "";
+            if (string.IsNullOrEmpty(sourceUrl)) return false;
+
+            if (sourceUrl.Contains("cdn.discordapp.com") || sourceUrl.Contains("media.discordapp.net"))
+            {
+                return TransformDiscordUrl(sourceUrl, out resizedUrl);
+            }
+
+            if (sourceUrl.Contains("pbs.twimg.com"))
+            {
+                resizedUrl = TransformTwitterUrl(sourceUrl);
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool TransformDiscordUrl(string url, out string resizedUrl)
+        {
+            resizedUrl = "";
+            var widthMatch = Regex.Match(url, @"[?&]width=(\d+)");
+            var heightMatch = Regex.Match(url, @"[?&]height=(\d+)");
+
+            if (!widthMatch.Success || !heightMatch.Success) return false;
+
+            var width = int.Parse(widthMatch.Groups[1].Value);
+            var height = int.Parse(heightMatch.Groups[1].Value);
+            var ratio = (float)width / height;
+
+            int newWidth, newHeight;
+            if (width >= height)
+            {
+                newWidth = 2048;
+                newHeight = (int)(2048 / ratio);
+            }
+            else
+            {
+                newHeight = 2048;
+                newWidth = (int)(2048 * ratio);
+            }
+
+            url = Regex.Replace(url, @"(width=)\d+", $"${{1}}{newWidth}");
+            url = Regex.Replace(url, @"(height=)\d+", $"${{1}}{newHeight}");
+            resizedUrl = url;
+            return true;
+        }
+
+        private string TransformTwitterUrl(string url)
+        {
+            if (Regex.IsMatch(url, @"[?&]name="))
+            {
+                return Regex.Replace(url, @"(name=)[^&]*", "$1large");
+            }
+            var separator = url.Contains("?") ? "&" : "?";
+            return $"{url}{separator}name=large";
         }
     }
 }

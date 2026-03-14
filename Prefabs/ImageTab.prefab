@@ -3147,11 +3147,23 @@ MonoBehaviour:
   defaultLanguage: 0
   supportedLanguages: 0000000006000000
   localizationKeys:
-  - ja.maximum-dimension-exceeded.tos-link
   - en.maximum-dimension-exceeded.tos-link
+  - ja.maximum-dimension-exceeded.tos-link
+  - en.error.dimension.title
+  - ja.error.dimension.title
+  - en.error.dimension.cdn.message
+  - ja.error.dimension.cdn.message
+  - en.error.dimension.proxy.message
+  - ja.error.dimension.proxy.message
   localizationValues:
-  - "\u30D7\u30ED\u30AD\u30B7\u30B5\u30FC\u30D3\u30B9\u306E\u5229\u7528\u898F\u7D04\u30FB\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC\u306F\u3053\u3061\u3089"
   - Click here for the Terms of Service and Privacy Policy for the proxy service
+  - "\u30D7\u30ED\u30AD\u30B7\u30B5\u30FC\u30D3\u30B9\u306E\u5229\u7528\u898F\u7D04\u30FB\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC\u306F\u3053\u3061\u3089"
+  - Image exceeds maximum dimensions
+  - "\u753B\u50CF\u306E\u6700\u5927\u5BF8\u6CD5\u3092\u8D85\u3048\u3066\u3044\u307E\u3059"
+  - You can load this image at a lower resolution using the URL below
+  - "\u4EE5\u4E0B\u306EURL\u3067\u89E3\u50CF\u5EA6\u3092\u4E0B\u3052\u3066\u8AAD\u307F\u8FBC\u3081\u307E\u3059"
+  - You can load this image via the resize proxy using the URL below
+  - "\u4EE5\u4E0B\u306EURL\u304B\u3089\u30EA\u30B5\u30A4\u30BA\u30D7\u30ED\u30AD\u30B7\u7D4C\u7531\u3067\u8AAD\u307F\u8FBC\u3081\u307E\u3059"
   localizationTargetKeys:
   - maximum-dimension-exceeded.tos-link
   localizationTargets:
@@ -3190,6 +3202,7 @@ MonoBehaviour:
   uIDimensionErrorTitle: {fileID: 8317924443651697002}
   uIDimensionErrorMessage: {fileID: 1424368274038745099}
   uIDimensionErrorInput: {fileID: 8551054084777312681}
+  uiDimensionProxyTosInput: {fileID: 5924232501762969816}
   inputField: {fileID: 4839360843786961736}
   image: {fileID: 3937489300849477754}
   aspectRatioFitter: {fileID: 4655774779730696241}
