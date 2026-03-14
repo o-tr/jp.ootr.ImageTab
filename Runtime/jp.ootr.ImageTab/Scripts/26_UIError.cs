@@ -68,8 +68,7 @@ namespace jp.ootr.ImageTab
 
             if (sourceUrl.Contains("pbs.twimg.com"))
             {
-                resizedUrl = TransformTwitterUrl(sourceUrl);
-                return true;
+                return TransformTwitterUrl(sourceUrl, out resizedUrl);
             }
 
             return false;
@@ -99,20 +98,27 @@ namespace jp.ootr.ImageTab
                 newWidth = Mathf.Max(1, (int)(2048 * ratio));
             }
 
-            url = Regex.Replace(url, @"(width=)\d+", $"${{1}}{newWidth}");
-            url = Regex.Replace(url, @"(height=)\d+", $"${{1}}{newHeight}");
+            url = Regex.Replace(url, @"(?<=[?&])width=\d+", $"width={newWidth}");
+            url = Regex.Replace(url, @"(?<=[?&])height=\d+", $"height={newHeight}");
             resizedUrl = url;
             return true;
         }
 
-        private string TransformTwitterUrl(string url)
+        private bool TransformTwitterUrl(string url, out string resizedUrl)
         {
-            if (Regex.IsMatch(url, @"[?&]name="))
+            resizedUrl = "";
+            var nameMatch = Regex.Match(url, @"[?&]name=([^&]*)");
+            if (nameMatch.Success)
             {
-                return Regex.Replace(url, @"([?&]name=)[^&]*", "${1}large");
+                var currentName = nameMatch.Groups[1].Value;
+                if (currentName == "large" || currentName == "medium" || currentName == "small" || currentName == "thumb")
+                    return false;
+                resizedUrl = Regex.Replace(url, @"([?&]name=)[^&]*", "${1}large");
+                return true;
             }
             var separator = url.Contains("?") ? "&" : "?";
-            return $"{url}{separator}name=large";
+            resizedUrl = $"{url}{separator}name=large";
+            return true;
         }
     }
 }
