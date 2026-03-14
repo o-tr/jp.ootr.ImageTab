@@ -48,7 +48,9 @@ namespace jp.ootr.ImageTab
             else
             {
                 uIDimensionErrorMessage.text = __("error.dimension.proxy.message");
-                uIDimensionErrorInput.text = $"{proxyBaseUrl}{sourceUrl}";
+                uIDimensionErrorInput.text = string.IsNullOrEmpty(proxyBaseUrl)
+                    ? sourceUrl
+                    : $"{proxyBaseUrl}{sourceUrl}";
                 uiDimensionProxyTosInput.SetActive(true);
             }
             OpenDimensionErrorModal();
@@ -81,8 +83,8 @@ namespace jp.ootr.ImageTab
 
             if (!widthMatch.Success || !heightMatch.Success) return false;
 
-            var width = int.Parse(widthMatch.Groups[1].Value);
-            var height = int.Parse(heightMatch.Groups[1].Value);
+            if (!int.TryParse(widthMatch.Groups[1].Value, out var width) ||
+                !int.TryParse(heightMatch.Groups[1].Value, out var height)) return false;
             var ratio = (float)width / height;
 
             int newWidth, newHeight;
@@ -107,7 +109,7 @@ namespace jp.ootr.ImageTab
         {
             if (Regex.IsMatch(url, @"[?&]name="))
             {
-                return Regex.Replace(url, @"(name=)[^&]*", "$1large");
+                return Regex.Replace(url, @"([?&]name=)[^&]*", "${1}large");
             }
             var separator = url.Contains("?") ? "&" : "?";
             return $"{url}{separator}name=large";
