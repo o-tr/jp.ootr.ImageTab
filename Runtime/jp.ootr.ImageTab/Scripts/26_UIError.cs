@@ -71,6 +71,11 @@ namespace jp.ootr.ImageTab
                 return TransformTwitterUrl(sourceUrl, out resizedUrl);
             }
 
+            if (sourceUrl.Contains("googleusercontent.com"))
+            {
+                return TransformGooglePhotosUrl(sourceUrl, out resizedUrl);
+            }
+
             return false;
         }
 
@@ -118,6 +123,32 @@ namespace jp.ootr.ImageTab
             }
             var separator = url.Contains("?") ? "&" : "?";
             resizedUrl = $"{url}{separator}name=large";
+            return true;
+        }
+
+        private bool TransformGooglePhotosUrl(string url, out string resizedUrl)
+        {
+            resizedUrl = "";
+            var match = Regex.Match(url, @"=w(\d+)-h(\d+)");
+            if (!match.Success) return false;
+
+            if (!int.TryParse(match.Groups[1].Value, out var width) ||
+                !int.TryParse(match.Groups[2].Value, out var height)) return false;
+
+            var ratio = (float)width / height;
+            int newWidth, newHeight;
+            if (width >= height)
+            {
+                newWidth = 2048;
+                newHeight = Mathf.Max(1, (int)(2048 / ratio));
+            }
+            else
+            {
+                newHeight = 2048;
+                newWidth = Mathf.Max(1, (int)(2048 * ratio));
+            }
+
+            resizedUrl = Regex.Replace(url, @"(=w)\d+(-h)\d+", $"${{1}}{newWidth}${{2}}{newHeight}");
             return true;
         }
     }
